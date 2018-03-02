@@ -83,6 +83,10 @@ var twemoji=function(){"use strict";var twemoji={base:"https://twemoji.maxcdn.co
 </tr>
 <tr class="odd">
 <td style="text-align: left;">19:00~</td>
+<td style="text-align: center;">NixやSATySFi</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">23:00~</td>
 <td style="text-align: center;"></td>
 </tr>
 </tbody>
@@ -94,15 +98,27 @@ var twemoji=function(){"use strict";var twemoji={base:"https://twemoji.maxcdn.co
 <p>ふと<a href="https://danluu.com/octopress-speedup/" class="uri">https://danluu.com/octopress-speedup/</a>を思い出してここに反映できる工夫がないか調べる。webpagetestにかけたらfavicon.icoがないことに気づいて追加した。 <code>git push</code>後すぐに<a href="https://mt-caret.github.io/favicon.ico" class="uri">https://mt-caret.github.io/favicon.ico</a>にアクセスしたところ、 404になってしまってなかなか反映されない。GitHub Pagesには多分ネガティブキャッシュみたいなのがあるんだと思う。</p>
 <p>夕食時に「高校の同級生で文系の子はもう就活なの？」と親から聞かれて確かにそうかもしれないと答えた。周りに働くという概念を極端に嫌う人間が多いが、就労を忌避するのは自然なのだろうか。後輩・同期・先輩の動きを見て焦燥感を募らせるのは無意味にストレスを生む行為だとわかりつつやってしまう。尊敬している先輩から「そろそろ研究する分野決めたら？」との助言をいただいが、果たして自分は何をやっていけばいいのだろうか。<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> いくつかの目標があってそれらを最適化するように行動してきたつもりではあるが、いまいち自信が持てない。</p>
 <p>院試について考えている。</p>
-<!--
-- メールを出す
-- JSの処理
--->
+<p>gitでしくじった。gitをノリで使っているからミスった時の復帰がキツイ。</p>
+<p>SATySFiのNixベースなパッケージマネージャを組むとしたらどういうふうに設計するのがいいのか小一時間考えていた。#nixosで質問したらnix-index/nix-locate<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> を勧められた他に、monte言語というパッケージマネジメントにNixを使う言語のことを教えてもらった。monte言語をパッと見た感じ<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>、JSONで依存パッケージを記述してそこからNix式を生成してロックファイルとして扱っているようだ。</p>
+<p>関係するリンクをPinboardから掘り出して読んでる。</p>
+<ul>
+<li><a href="http://dominictarr.com/post/25516279897/why-you-should-never-write-a-package-manager">why you should NEVER write a package manager</a></li>
+<li><a href="https://medium.com/@sdboyer/so-you-want-to-write-a-package-manager-4ae9c17d9527">So you want to write a package manager</a> <a href="https://news.ycombinator.com/item?id=11088125">(HN)</a></li>
+</ul>
 <h2 id="明日やるべきこと">明日やるべきこと</h2>
+<ul>
+<li>スクレイピングが上手くいったら#haskell-beginnerのshaprに報告すること</li>
+<li>3DMM</li>
+<li>画像処理調べもの</li>
+<li>Rust</li>
+<li>確定申告・精算・年金</li>
+</ul>
 <section class="footnotes">
 <hr />
 <ol>
 <li id="fn1"><p>多分明示的に「これをやろう」ってするより興味の赴くままに手を出して知識を深めて自然に研究テーマが湧くのが一番だが。<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>こう使うらしい: <a href="https://nixos.wiki/wiki/Packaging_Binaries">Packaging Binaries - NixOS Wiki</a><a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p><a href="https://monte.readthedocs.io/en/latest/packaging.html">Working with Packages — Monte 0.1 documentation</a><a href="#fnref3" class="footnote-back">↩</a></p></li>
 </ol>
 </section>
 <a href="./index.html">一覧</a>
