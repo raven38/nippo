@@ -27,6 +27,9 @@ width: 1em;
 margin: 0 .05em 0 .1em;
 vertical-align: -0.1em;
 }
+img {
+max-width: 100%;
+}
 </style>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
@@ -109,6 +112,15 @@ var twemoji=function(){"use strict";var twemoji={base:"https://twemoji.maxcdn.co
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/bFZoeJn3G3o?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
 </iframe>
 <p>年金・イのメールDone.</p>
+<p>ocharles/dhall-buildは時期尚早という感じがある。Dependency GraphをDhallで表してNixに落とし込むことができたら綺麗だが。</p>
+<h3 id="メモ">メモ</h3>
+<p><code>nix-prefetch-url -A</code>で<code>fetchurl</code>以外のハッシュ値も得られる:</p>
+<pre><code>$ nix-prefetch-url -A linuxPackages.kernel.src
+ [78443/90991 KiB, 11001.6 KiB/s]g/pub/linux/kernel/v4.x/linux-4.9.49.tar.xz’... [0/0 KiB, 0.0 Ki [0/90991 KiB, 0.0 KiB/s]
+path is ‘/nix/store/mbdwpv9cvyk3wfnd6mvzw0f6yklj9cgq-linux-4.9.49.tar.xz’
+1ywiww2h1gf3ps305irzk7n9xkcgg9bclr2jw6r5cqxmh3qxrv2p</code></pre>
+<p>c.f. <a href="https://github.com/NixOS/nixpkgs/issues/21732">nix-prefetch-github? · Issue #21732 · NixOS/nixpkgs</a></p>
+<p>Scalpel使えないと思っていたらTagSoupの[Tag str]をそのまま使えることに気づき、共存可能だと知った。すごい。しかし今回はTagSoupで完結してしまいそう…</p>
 <h2 id="明日やるべきこと">明日やるべきこと</h2>
 <ul>
 <li>スクレイピングが上手くいったら#haskell-beginnerのshaprに報告すること</li>
