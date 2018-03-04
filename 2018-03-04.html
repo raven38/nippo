@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>日報 2018-03-01</title>
+  <title>日報 2018-03-04</title>
   <style type="text/css">
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -289,119 +289,144 @@ var twemoji=function(){"use strict";var twemoji={base:"https://twemoji.maxcdn.co
 </head>
 <body>
 <header>
-<h1 class="title">日報 2018-03-01</h1>
+<h1 class="title">日報 2018-03-04</h1>
 </header>
 <table>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">09:30~</td>
+<td style="text-align: left;">10:30~</td>
 <td style="text-align: center;">起床</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">10:30~</td>
-<td style="text-align: center;">無</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;">11:30~</td>
 <td style="text-align: center;">昼食</td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;">13:00~</td>
+<td style="text-align: center;">無</td>
+</tr>
 <tr class="even">
-<td style="text-align: left;">12:30~</td>
-<td style="text-align: center;">brainfuckについて調べる</td>
+<td style="text-align: left;">14:00~</td>
+<td style="text-align: center;">スクレイピング</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">14:00~</td>
-<td style="text-align: center;">サーベイ</td>
+<td style="text-align: left;">17:00~</td>
+<td style="text-align: center;">無</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">18:30~</td>
-<td style="text-align: center;">class-ai</td>
+<td style="text-align: center;">夕食</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">22:00~</td>
-<td style="text-align: center;">スクレイピング</td>
+<td style="text-align: left;">19:30~</td>
+<td style="text-align: center;"></td>
 </tr>
 </tbody>
 </table>
-<p>Nix overlayよくわからん。Rust Nightlyを使うためにMozillaのoverlayを使っているがNixエコシステム全体における立ち位置がよくつかめない。例えば、<code>~/.nixpkgs/config</code> にユーザープロファイルに入れているパッケージを列挙して管理しているが、 <code>nixpkgs.latest.rustChannels.nightly.rust</code>を入れても見つけてくれないようだ。<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
-<p>ブラウザの自動的な再読込をするため、非公式の怪しい拡張機能を導入した上で手元で動くものも動かす必要があって面倒。bashであまり考えずに完結してほしい。</p>
-<p>SignalをiPhoneに入れてみたら、ちゃんと和訳されていて感動した。しかし、個人がQRコードとかじゃなくて電話番号と紐付いていて例えばパッとツイッターで公開したり初対面の人と連絡をとるために使いにくい。日本で流行るかと言われたら怪しそう。</p>
-<p>brainfuckをZipperを使って簡単に実装できるんじゃないかと少し調べてみたところ、そもそもbrainfuckの最初の実装はメモリ領域を有限としていたらしい。仮に無限としたとしても負のアドレスをサポートする必要はないらしく、落胆。<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
-<p>OCamlはstrict evaluationでに無限リストが標準でないことを完全に忘れていた。それはそうと下手にHaskellで書くよりRustとかの方が実装しやすそう。</p>
-<p>考えてみたらpandocの<code>--standalone</code>使っているってことは外部リソースはプリフェッチされてオフラインでのビルド失敗するな。</p>
-<p>Six Degrees of Kevin Bacon<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>の声優版ができるんじゃないかと思ってウィキペディア<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>をスクレイプすることにした。</p>
-<p>MediaWikiにはAPIがるらしい。 <a href="https://en.wikipedia.org/w/api.php?action=help&amp;modules=query%2Bcategorymembers">categorymembers</a> で「Category:日本の男性声優」と「Category:日本の女性声優」を落としてくれば良さそう。<code>jq</code>の出番かな。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co">#!/usr/bin/env bash</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">set</span> <span class="ex">-e</span></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="fu">dl()</span> <span class="kw">{</span></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">  <span class="ex">curl</span> -sS <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw">}</span></a>
-<a class="sourceLine" id="cb1-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co">#url=&quot;https://ja.wikipedia.org/w/api.php?action=query&amp;format=json&amp;list=categorymembers&amp;cmtitle=Category:日本の女性声優&amp;cmlimit=max&quot;</span></a>
-<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="co">#url=&quot;https://ja.wikipedia.org/w/api.php?action=query&amp;format=json&amp;list=categorymembers&amp;cmtitle=Category:ミルキィホームズの映像作品&quot;</span></a>
-<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="va">url=</span><span class="st">&quot;https://ja.wikipedia.org/w/api.php?action=query&amp;format=json&amp;list=categorymembers&amp;cmtitle=Category:日本の男性声優&amp;cmlimit=max&quot;</span></a>
-<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="va">res=$(</span><span class="ex">dl</span> <span class="st">&quot;</span><span class="va">$url</span><span class="st">&quot;</span><span class="va">)</span></a>
-<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="va">cont=$(</span><span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$res</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="ex">jq</span> -r <span class="st">&quot;.continue.cmcontinue&quot;</span><span class="va">)</span></a>
-<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="va">data=$(</span><span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$res</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="ex">jq</span> -r <span class="st">&quot;.query.categorymembers&quot;</span><span class="va">)</span></a>
-<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="va">out=</span><span class="st">&quot;</span><span class="va">$data</span><span class="st">&quot;</span></a>
-<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="kw">while</span><span class="bu"> [</span> <span class="st">&quot;</span><span class="va">$cont</span><span class="st">&quot;</span> <span class="ot">!=</span> <span class="st">&quot;null&quot;</span><span class="bu"> ]</span>; <span class="kw">do</span></a>
-<a class="sourceLine" id="cb1-16" data-line-number="16">  <span class="fu">sleep</span> 1</a>
-<a class="sourceLine" id="cb1-17" data-line-number="17">  <span class="bu">echo</span> <span class="st">&quot;cont = </span><span class="va">$cont</span><span class="st">&quot;</span></a>
-<a class="sourceLine" id="cb1-18" data-line-number="18">  <span class="va">new_url=</span><span class="st">&quot;</span><span class="va">$url</span><span class="st">&amp;cmcontinue=</span><span class="va">$cont</span><span class="st">&quot;</span></a>
-<a class="sourceLine" id="cb1-19" data-line-number="19">  <span class="bu">echo</span> <span class="st">&quot;new_url = </span><span class="va">$new_url</span><span class="st">&quot;</span></a>
-<a class="sourceLine" id="cb1-20" data-line-number="20">  <span class="va">res=$(</span><span class="ex">dl</span> <span class="st">&quot;</span><span class="va">$new_url</span><span class="st">&quot;</span><span class="va">)</span></a>
-<a class="sourceLine" id="cb1-21" data-line-number="21">  <span class="va">cont=$(</span><span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$res</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="ex">jq</span> -r <span class="st">&quot;.continue.cmcontinue&quot;</span><span class="va">)</span></a>
-<a class="sourceLine" id="cb1-22" data-line-number="22">  <span class="va">data=$(</span><span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$res</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="ex">jq</span> -r <span class="st">&quot;.query.categorymembers&quot;</span><span class="va">)</span></a>
-<a class="sourceLine" id="cb1-23" data-line-number="23">  <span class="va">out=$(</span><span class="bu">echo</span> -e <span class="st">&quot;</span><span class="va">$out</span><span class="st">\n</span><span class="va">$data</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="ex">jq</span> -s . <span class="kw">|</span> <span class="ex">jq</span> add<span class="va">)</span></a>
-<a class="sourceLine" id="cb1-24" data-line-number="24"><span class="kw">done</span></a>
-<a class="sourceLine" id="cb1-25" data-line-number="25"><span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$out</span><span class="st">&quot;</span> <span class="op">&gt;</span> result</a></code></pre></div>
-<p><code>cat 日本の男性声優.json | jq . -C | less -R</code>で出力結果を眺めると、ところどころ声優ではなさそうなページが混ざっているが数個程度だから手動で消す。</p>
-<p>こんなものが得られた:</p>
+<p>今日は昨日より少し早く起きることができた。</p>
+<p>頭が少し痛い。昔は頭が痛い時は間違いなく風だったので安静にして寝れば治ったが、大学生になってカフェイン切れによる頭痛も起きるようになって、2つの区別がなかなかつかなくて困る。</p>
+<p>久しぶりに悪夢を見た。車を運転しようとして上手くいかなくて死ぬ夢と気づくと英語のエッセイの提出期限がとっくに過ぎている夢だ。昔は車に乗ったり運転したりする行為について特になんとも思っていなかったが自動運転やら飛行機による移動と比較したときの致死率等の話を聞いていくうちにモヤモヤした気持ち<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>になるようになった。</p>
+<p>Elmの作者による <a href="https://www.youtube.com/watch?v=oYk8CKH7OhE">Let’s be mainstream! User focused design in Elm</a> を久しぶりに見返した。Elmの学習曲線は例えばHaskellのと比べ物にならないほど緩やかで、それはたまたまそうなったわけではなく意図してそうなるように設計されたんだなぁと見る度に思う。SATySFiは普及すればするほどみんながハッピーになれる<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> だろうし、成功してほしい。</p>
+<p>Elmと言えばパッケージマネージャがsemverを型シグネチャを見て強制している。革命的だと思うが、他の言語でこういうことをやっているところを見たことがない。 ML/Haskell系の言語<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>がそもそも少ないからかもしれない。</p>
+<p>声優の氏名は固有だという前提でスキーマを組んだら「前田愛」さんが2人居た… どうしようか。</p>
+<p>氏名に関する一意性制約をなくしたら上手くいった。Persistent簡単に使えて便利だ。</p>
+<p>得られた全声優のデータをSQLiteに突っ込んで、各声優のページをクロールして出演作品もDBに取り込んでいる。リクエスト毎に1秒おいて声優4000人前後居るから数時間かかりそう。</p>
+<p>DBのスキーマはこんな感じで落ち着いた。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="ot">{-# LANGUAGE EmptyDataDecls #-}</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="ot">{-# LANGUAGE FlexibleContexts #-}</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="ot">{-# LANGUAGE GADTs #-}</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="ot">{-# LANGUAGE GeneralizedNewtypeDeriving #-}</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="ot">{-# LANGUAGE MultiParamTypeClasses #-}</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="ot">{-# LANGUAGE OverloadedStrings #-}</span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="ot">{-# LANGUAGE QuasiQuotes #-}</span></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="ot">{-# LANGUAGE TemplateHaskell #-}</span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="ot">{-# LANGUAGE TypeFamilies #-}</span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="ot">{-# LANGUAGE DeriveGeneric #-}</span></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="kw">module</span> <span class="dt">Model</span> <span class="kw">where</span></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="kw">import</span> <span class="dt">Control.Monad.Trans.Control</span></a>
+<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="kw">import</span> <span class="dt">Control.Monad.Trans.Reader</span></a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="kw">import</span> <span class="dt">Control.Monad.IO.Class</span></a>
+<a class="sourceLine" id="cb1-16" data-line-number="16"><span class="kw">import</span> <span class="dt">Control.Monad.Logger</span></a>
+<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="kw">import</span> <span class="dt">Control.Monad.Trans.Resource</span></a>
+<a class="sourceLine" id="cb1-18" data-line-number="18"><span class="co">--import Data.Aeson</span></a>
+<a class="sourceLine" id="cb1-19" data-line-number="19"><span class="kw">import</span> <span class="dt">Data.Text</span></a>
+<a class="sourceLine" id="cb1-20" data-line-number="20"><span class="co">--import Database.Persist</span></a>
+<a class="sourceLine" id="cb1-21" data-line-number="21"><span class="kw">import</span> <span class="dt">Database.Persist.TH</span></a>
+<a class="sourceLine" id="cb1-22" data-line-number="22"><span class="kw">import</span> <span class="dt">Database.Persist.Sqlite</span></a>
+<a class="sourceLine" id="cb1-23" data-line-number="23"><span class="kw">import</span> <span class="dt">GHC.Generics</span></a>
+<a class="sourceLine" id="cb1-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb1-25" data-line-number="25">share [mkPersist sqlSettings, mkMigrate <span class="st">&quot;migrateAll&quot;</span>] [persistLowerCase|</a>
+<a class="sourceLine" id="cb1-26" data-line-number="26">Anime</a>
+<a class="sourceLine" id="cb1-27" data-line-number="27">    title Text</a>
+<a class="sourceLine" id="cb1-28" data-line-number="28">    href Text</a>
+<a class="sourceLine" id="cb1-29" data-line-number="29">    UniqueAnimeTitle title href</a>
+<a class="sourceLine" id="cb1-30" data-line-number="30">    deriving Show</a>
+<a class="sourceLine" id="cb1-31" data-line-number="31">    deriving Generic</a>
+<a class="sourceLine" id="cb1-32" data-line-number="32">Actor</a>
+<a class="sourceLine" id="cb1-33" data-line-number="33">    name Text</a>
+<a class="sourceLine" id="cb1-34" data-line-number="34">    href Text Maybe</a>
+<a class="sourceLine" id="cb1-35" data-line-number="35">    deriving Show</a>
+<a class="sourceLine" id="cb1-36" data-line-number="36">    deriving Generic</a>
+<a class="sourceLine" id="cb1-37" data-line-number="37">Role</a>
+<a class="sourceLine" id="cb1-38" data-line-number="38">    animeId AnimeId</a>
+<a class="sourceLine" id="cb1-39" data-line-number="39">    actorId ActorId</a>
+<a class="sourceLine" id="cb1-40" data-line-number="40">    name Text</a>
+<a class="sourceLine" id="cb1-41" data-line-number="41">    UniqueRole animeId actorId name</a>
+<a class="sourceLine" id="cb1-42" data-line-number="42">    deriving Show</a>
+<a class="sourceLine" id="cb1-43" data-line-number="43">    deriving Generic</a>
+<a class="sourceLine" id="cb1-44" data-line-number="44">|]</a>
+<a class="sourceLine" id="cb1-45" data-line-number="45"></a>
+<a class="sourceLine" id="cb1-46" data-line-number="46"><span class="ot">runDB ::</span> (<span class="dt">MonadBaseControl</span> <span class="dt">IO</span> m, <span class="dt">MonadIO</span> m) <span class="ot">=&gt;</span> <span class="dt">ReaderT</span> <span class="dt">SqlBackend</span> (<span class="dt">NoLoggingT</span> (<span class="dt">ResourceT</span> m)) a <span class="ot">-&gt;</span> m a</a>
+<a class="sourceLine" id="cb1-47" data-line-number="47">runDB f <span class="fu">=</span> runSqlite <span class="st">&quot;db.sqlite&quot;</span> f</a>
+<a class="sourceLine" id="cb1-48" data-line-number="48"></a>
+<a class="sourceLine" id="cb1-49" data-line-number="49"><span class="ot">runMigrationIO ::</span> <span class="dt">IO</span> ()</a>
+<a class="sourceLine" id="cb1-50" data-line-number="50">runMigrationIO <span class="fu">=</span> runDB <span class="fu">$</span> runMigration migrateAll</a></code></pre></div>
+<p><code>show</code>をすると長くなりがちなレコードをログとして出していて、4Kのよさを改めて実感した。</p>
+<p>型チェックだけをしたい。<a href="https://stackoverflow.com/questions/12373722/make-ghc-only-type-check">SOにそういった趣旨の質問があるが</a> stackからは使いにくそう。<a href="https://github.com/commercialhaskell/stack/issues/977">誰かに実装してほしい。</a></p>
+<p>自分の日報への言及を見ると嬉しくなる。続けていきたい。</p>
+<p>pandocにself-containedオプションを渡しているため、画像が全部base64エンコードされて埋め込まれるようになっている。そのせいで高解像度の画像を載せるとページの大きさが大変なことになってしまう。</p>
+<p>簡単に扱える画像ホスティングサービスが欲しい。</p>
+<p>昼食の帰り（外食だった）に買ったコーヒーの缶を飲んでいる。気付くと頭痛がしなくなっているから、今回は多分カフェイン切れ。</p>
+<h3 id="watchしている日報">watchしている日報</h3>
 <ul>
-<li><p><a href="https://gist.github.com/mt-caret/f337e3114b8bfb9e4cec86a2c26d109c">日本の男性声優.json</a></p></li>
-<li><p><a href="https://gist.github.com/mt-caret/2e4e2e24160337f21a0b1ee03b71d3ab">日本の女性声優.json</a></p></li>
+<li><a href="https://nippo.wikihub.io/@azyobuzin/articles" class="uri">https://nippo.wikihub.io/@azyobuzin/articles</a></li>
+<li><a href="https://to-be-real.tumblr.com/" class="uri">https://to-be-real.tumblr.com/</a></li>
+<li><a href="https://diary.sh4869.net/" class="uri">https://diary.sh4869.net/</a></li>
+<li><a href="https://strict-flower.tumblr.com/" class="uri">https://strict-flower.tumblr.com/</a></li>
 </ul>
-<p>パッと見た感じだと項目情報を都合よくJSONで取れなさそうだし、いよいよスクレイピングかな。</p>
-<p>Haskell+Scalpelを検討している。スクレイピングをする度にHaskellでやりたいなと思ってはライブラリが微妙で結局JavaScriptとかに落ち着いちゃっていたが、これは悪くないかもしれない。</p>
-<p>目当てのタグ以降から探しだす方法がわからん、<code>&gt;&gt;</code>でつなげれば上手く行くのか？</p>
-<p><a href="http://hs.eraveline.eu/posts/scalpel.html" class="uri">http://hs.eraveline.eu/posts/scalpel.html</a>を読んでいる。</p>
-<p>すごく親切にかかれていて、わかりやすい。</p>
-<p>Monadic/Applicative Parsingの仕組みを読んで、納得して、忘れることをこれまで何度も繰り返していてつらい。</p>
-<p>#haskell-beginners <a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>で質問したらめちゃくちゃ優しい対応が返ってきて感動してる。</p>
-<p>Scalpel使いやすいけどWikipediaのマークアップのされかたと相性が悪そう、という結論に至りつつある。ndmitchell/tagsoupを使うことになりそう。</p>
-<p>基本的にGoogle Analytics等はブログに載せないことにしている一方、どれぐらい読まれているのかは気になるというジレンマ。最近piwikからクソ面白い名前に変わった <a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>オープンソースアナリティクスだったら試してみてもいいかな、という気分になる一方そういうのもアドブロッカーが殺しちゃうと考えるとなかなか難しい。</p>
-<p>ツイッターに日々思うことを書くと流れていってしまうけど<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>ここに書くと残るからか、まるで何か精算的なことをしているかのような気がしてくる。</p>
-<p><a href="https://github.com/fimad/scalpel/issues/48">Figure out story for queries that span multiple sub-trees.</a> でScalpelによるsiblingのマッチングは無理ということがわかった。よいabstractionなだけに残念。おとなしくTagsoupを使おう。</p>
-<h3 id="案">案</h3>
-<p>忘れないようにメモ。</p>
-<ul>
-<li>brainfuckインタプリタ</li>
-<li>opt-inなトラッキング</li>
-</ul>
+<p>ツイッターを見ていると全員が何かしらの成果を常に出していかのような錯覚に陥って必要以上に焦燥感に駆られるが、日報を見ると各位が適度に休みながら進捗と成果を出している様子が見れる。変に力まずに済んで精神衛生上良い。みんな面白そうなことやってるのを見るの楽しいしね。</p>
+<p>あーだこーだやってる内にスクレイピングが終わった。</p>
+<pre><code>$ sqlite3 db.sqlite
+SQLite version 3.21.0 2017-10-24 18:55:49
+Enter &quot;.help&quot; for usage hints.
+sqlite&gt; .tables
+actor  anime  role
+sqlite&gt; select count(*) from actor;
+4124
+sqlite&gt; select count(*) from anime;
+4814
+sqlite&gt; select count(*) from role;
+100555</code></pre>
+<p>声優の数とアニメの数がほぼ1:1なのが少し意外。アニメ一つに参加する声優の人数の平均をnとすると声優一人あたり参加するアニメの総数の平均もほぼn個ってことかな？</p>
+<pre><code>% sqlite3 db.sqlite
+SQLite version 3.21.0 2017-10-24 18:55:49
+Enter &quot;.help&quot; for usage hints.
+sqlite&gt; select avg(cnt) from (select count(*) as cnt from role group by anime_id);
+20.8880348982135
+sqlite&gt; select avg(cnt) from (select count(*) as cnt from role group by actor_id);
+26.0843060959792</code></pre>
+<p>そのようだ。</p>
 <h2 id="明日やるべきこと">明日やるべきこと</h2>
-<ul>
-<li>スクレイピングが上手くいったら#haskell-beginnerのshaprに報告すること</li>
-<li>3DMM</li>
-<li>画像処理調べもの</li>
-<li>Rust</li>
-<li>確定申告・精算</li>
-</ul>
+<!--
+<button style="border:.2em solid grey;width:100px;height:25px;font-size:12px;font-weight:900;color:#555555;background:#fff488;border-radius:3px;" type="button" onclick="var req = new XMLHttpRequest(); req.open('POST','https://www.example.com/mt-caret?url=' + encodeURIComponent(window.location.href));req.send();this.disabled=true;this.style.background='#555555';this.style.color='#fff488';"><svg style="height:1em;width:1em;margin:0 .05em 0 .1em;vertical-align:-0.1em;" aria-hidden="true" data-prefix="fas" data-icon="book" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-book fa-w-14 fa-2x"><path fill="currentColor" d="M448 360V24c0-13.3-10.7-24-24-24H96C43 0 0 43 0 96v320c0 53 43 96 96 96h328c13.3 0 24-10.7 24-24v-16c0-7.5-3.5-14.3-8.9-18.7-4.2-15.4-4.2-59.3 0-74.7 5.4-4.3 8.9-11.1 8.9-18.6zM128 134c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm0 64c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm253.4 250H96c-17.7 0-32-14.3-32-32 0-17.6 14.4-32 32-32h285.4c-1.9 17.1-1.9 46.9 0 64z" class=""></path></svg>yondayo</button>
+-->
 <section class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p><a href="https://www.youtube.com/watch?v=W85mF1zWA2o">Nixpkgs Overlays – A place for all excluded packages by Nicolas B. Pierron</a> <a href="https://nbp.github.io/slides/NixCon/2017.NixpkgsOverlays/">スライド</a><br />
-あとで読む。<a href="#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><ul>
-<li><a href="https://esolangs.org/wiki/Brainfuck">Brainfuck</a></li>
-<li><a href="http://www.muppetlabs.com/~breadbox/bf/">The Brainfuck Programming Language</a></li>
-</ul>
-<a href="#fnref2" class="footnote-back">↩</a></li>
-<li id="fn3"><p><a href="https://bacon.mybluemix.net/" class="uri">https://bacon.mybluemix.net/</a>, <a href="https://en.wikipedia.org/wiki/Six_Degrees_of_Kevin_Bacon" class="uri">https://en.wikipedia.org/wiki/Six_Degrees_of_Kevin_Bacon</a><a href="#fnref3" class="footnote-back">↩</a></p></li>
-<li id="fn4"><p><a href="http://lain.gr.jp/" class="uri">http://lain.gr.jp/</a>といういい感じのものも見つけたが、APIのページが404してよくわからん。ウィキペディアでやってみて失敗したら試そうと思う。<a href="#fnref4" class="footnote-back">↩</a></p></li>
-<li id="fn5"><p>一生Haskell初心者を脱することができなさそう<a href="#fnref5" class="footnote-back">↩</a></p></li>
-<li id="fn6"><p>matomo、日本語の「まとも」から名前をとったと公言しているがニュアンスを考えると失敗では？よく知らない言語の言葉を適当に借りるのは危険だなぁ、となる。<a href="#fnref6" class="footnote-back">↩</a></p></li>
-<li id="fn7"><p>あとは人にとってノイズでしかない情報をTLに流しているという後ろめたさがなくなるのもあるかもしれない。<a href="#fnref7" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>a feeling of uneasinessと形容したくて“uneasiness”で英和辞書をひいたら「不安、心配、困惑」と出てきて、どれも意味としては強すぎる気がして結局曖昧な言葉遣いを選んだ。和文で自分を表現するのが下手なのか、日本語では表現することができない感情を表現しようとしているのか。サピア=ウォーフ仮説を引き合いに出して洒落たことを言ってみたいが、特に言えることはない。<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>これはNixにも言えることで、そういう話を友人にしたら「全員がそれを使えばハッピーになれるのは、任意の技術基盤について言えない？」と指摘されて、それもそうだなとなった。<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>「関数型言語」は定義が存在しないため意味不明だという主張があって、藁人形論法の元にもなりうるし基本的に同意できるがFunctional Paradigmに言及したい時に困ってしまう。OCaml/SML/Haskell/etc.の言語をまとめてML系の言語と呼ぶのはどうかという提案もある一方HaskellはML系とは言えないという主張も見て、こんな表現にとりあえず落ち着いている。<a href="#fnref3" class="footnote-back">↩</a></p></li>
 </ol>
 </section>
 <a href="./index.html">一覧</a>
