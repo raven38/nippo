@@ -280,6 +280,10 @@ vertical-align: -0.1em;
 img {
 max-width: 100%;
 }
+pre {
+line-height: 1.4;
+font-size: 14px;
+}
 </style>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
@@ -413,6 +417,98 @@ sqlite&gt; select avg(cnt) from (select count(*) as cnt from role group by actor
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" data-line-number="1">$ <span class="fu">sort</span> output <span class="kw">|</span> <span class="fu">uniq</span> -c <span class="kw">|</span> <span class="fu">grep</span> DUP</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">    <span class="ex">106</span> !!!DUPLICATE DETECTED!!!</a></code></pre></div>
 <p>重複し過ぎでは。</p>
+<p>幅優先探索を走らせているが、sequencesのFastQueueを使ったら謎のランタイムエラーが出たから2つのリストを使ってQueueを自作して使った。型エラーを適当に直したところそのまま動いた。Haskellのそういうところがいいんだよな。</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">module</span> <span class="dt">Queue</span> <span class="kw">where</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">data</span> <span class="dt">Queue</span> a <span class="fu">=</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">    <span class="dt">Queue</span> [a] [a]</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">    <span class="kw">deriving</span> <span class="dt">Show</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="ot">isEmpty ::</span> <span class="dt">Queue</span> a <span class="ot">-&gt;</span> <span class="dt">Bool</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">isEmpty (<span class="dt">Queue</span> [] []) <span class="fu">=</span> <span class="dt">True</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">isEmpty _ <span class="fu">=</span> <span class="dt">False</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="ot">empty ::</span> <span class="dt">Queue</span> a</a>
+<a class="sourceLine" id="cb5-12" data-line-number="12">empty <span class="fu">=</span> <span class="dt">Queue</span> [] []</a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="ot">singleton ::</span> a <span class="ot">-&gt;</span> <span class="dt">Queue</span> a</a>
+<a class="sourceLine" id="cb5-15" data-line-number="15">singleton x <span class="fu">=</span> <span class="dt">Queue</span> [x] []</a>
+<a class="sourceLine" id="cb5-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="ot">push ::</span> <span class="dt">Queue</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Queue</span> a</a>
+<a class="sourceLine" id="cb5-18" data-line-number="18">push (<span class="dt">Queue</span> ins outs) x <span class="fu">=</span> <span class="dt">Queue</span> (x<span class="fu">:</span>ins) outs</a>
+<a class="sourceLine" id="cb5-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb5-20" data-line-number="20"><span class="ot">pop ::</span> <span class="dt">Queue</span> a <span class="ot">-&gt;</span> <span class="dt">Maybe</span> (a, <span class="dt">Queue</span> a)</a>
+<a class="sourceLine" id="cb5-21" data-line-number="21">pop (<span class="dt">Queue</span> [] []) <span class="fu">=</span> <span class="dt">Nothing</span></a>
+<a class="sourceLine" id="cb5-22" data-line-number="22">pop (<span class="dt">Queue</span> ins []) <span class="fu">=</span></a>
+<a class="sourceLine" id="cb5-23" data-line-number="23">    <span class="dt">Just</span> (x, <span class="dt">Queue</span> [] xs)</a>
+<a class="sourceLine" id="cb5-24" data-line-number="24">  <span class="kw">where</span></a>
+<a class="sourceLine" id="cb5-25" data-line-number="25">    (x<span class="fu">:</span>xs) <span class="fu">=</span> reverse ins</a>
+<a class="sourceLine" id="cb5-26" data-line-number="26">pop (<span class="dt">Queue</span> ins (x<span class="fu">:</span>xs)) <span class="fu">=</span> <span class="dt">Just</span> (x, <span class="dt">Queue</span> ins xs)</a></code></pre></div>
+<p>上手く行った！試しに「水瀬いのり」と「水樹奈々」の距離を計測してみた。</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co">{- 省略 -}</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="ot">bfs ::</span> <span class="dt">Key</span> <span class="dt">M.Actor</span> <span class="ot">-&gt;</span> <span class="dt">S.Set</span> (<span class="dt">Key</span> <span class="dt">M.Actor</span>) <span class="ot">-&gt;</span> <span class="dt">Q.Queue</span> (<span class="dt">Int</span>, (<span class="dt">Key</span> <span class="dt">M.Actor</span>)) <span class="ot">-&gt;</span> <span class="dt">IO</span> (<span class="dt">Maybe</span> <span class="dt">Int</span>)</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">bfs idToFind visited q <span class="fu">=</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">    <span class="kw">case</span> Q.pop q <span class="kw">of</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">        <span class="dt">Nothing</span> <span class="ot">-&gt;</span> return <span class="dt">Nothing</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">        <span class="dt">Just</span> ((n, aId), q')</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">            <span class="fu">|</span> aId <span class="fu">==</span> idToFind <span class="ot">-&gt;</span> return <span class="fu">$</span> <span class="dt">Just</span> n</a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">            <span class="fu">|</span> n <span class="fu">&gt;</span> <span class="dv">3</span> <span class="ot">-&gt;</span> return <span class="dt">Nothing</span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9">            <span class="fu">|</span> otherwise <span class="ot">-&gt;</span> <span class="kw">do</span></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10">                print (n, aId) </a>
+<a class="sourceLine" id="cb6-11" data-line-number="11">                <span class="fu">!</span>nextQ <span class="ot">&lt;-</span> M.runDB <span class="fu">$</span> <span class="kw">do</span></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12">                    animeIds <span class="ot">&lt;-</span> fmap (M.roleAnimeId <span class="fu">.</span> entityVal) <span class="fu">&lt;$&gt;</span> selectList [ <span class="dt">M.RoleActorId</span> <span class="fu">==.</span> aId ] []</a>
+<a class="sourceLine" id="cb6-13" data-line-number="13">                    nextIds <span class="ot">&lt;-</span> fmap (removeDups <span class="fu">.</span> concat) <span class="fu">&lt;$&gt;</span> forM animeIds <span class="fu">$</span> \animeId_ <span class="ot">-&gt;</span></a>
+<a class="sourceLine" id="cb6-14" data-line-number="14">                        fmap (M.roleActorId <span class="fu">.</span> entityVal) <span class="fu">&lt;$&gt;</span> selectList [ <span class="dt">M.RoleAnimeId</span> <span class="fu">==.</span> animeId_, <span class="dt">M.RoleActorId</span> <span class="fu">!=.</span> aId ] []</a>
+<a class="sourceLine" id="cb6-15" data-line-number="15">                    return <span class="fu">.</span> queue <span class="fu">$</span> filter (\i <span class="ot">-&gt;</span> S.notMember i visited) nextIds</a>
+<a class="sourceLine" id="cb6-16" data-line-number="16">                bfs idToFind (S.insert aId visited) nextQ</a>
+<a class="sourceLine" id="cb6-17" data-line-number="17">              <span class="kw">where</span></a>
+<a class="sourceLine" id="cb6-18" data-line-number="18"><span class="ot">                queue ::</span> [<span class="dt">Key</span> <span class="dt">M.Actor</span>] <span class="ot">-&gt;</span> <span class="dt">Q.Queue</span> (<span class="dt">Int</span>, (<span class="dt">Key</span> <span class="dt">M.Actor</span>))</a>
+<a class="sourceLine" id="cb6-19" data-line-number="19">                queue <span class="fu">=</span> foldl' Q.push q' <span class="fu">.</span> fmap ((,) (n<span class="fu">+</span><span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb6-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb6-21" data-line-number="21"><span class="ot">calculateSeperationNumber ::</span> <span class="dt">T.Text</span> <span class="ot">-&gt;</span> <span class="dt">T.Text</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> (<span class="dt">Maybe</span> <span class="dt">Int</span>)</a>
+<a class="sourceLine" id="cb6-22" data-line-number="22">calculateSeperationNumber a b <span class="fu">=</span> <span class="kw">do</span></a>
+<a class="sourceLine" id="cb6-23" data-line-number="23">    (aId, bId) <span class="ot">&lt;-</span> M.runDB <span class="fu">$</span> <span class="kw">do</span></a>
+<a class="sourceLine" id="cb6-24" data-line-number="24">        aId <span class="ot">&lt;-</span> entityKey <span class="fu">.</span> fromJust <span class="fu">&lt;$&gt;</span> selectFirst [ <span class="dt">M.ActorName</span> <span class="fu">==.</span> a ] []</a>
+<a class="sourceLine" id="cb6-25" data-line-number="25">        bId <span class="ot">&lt;-</span> entityKey <span class="fu">.</span> fromJust <span class="fu">&lt;$&gt;</span> selectFirst [ <span class="dt">M.ActorName</span> <span class="fu">==.</span> b ] []</a>
+<a class="sourceLine" id="cb6-26" data-line-number="26">        liftIO <span class="fu">$</span> uprint (aId, bId)</a>
+<a class="sourceLine" id="cb6-27" data-line-number="27">        return (aId, bId)</a>
+<a class="sourceLine" id="cb6-28" data-line-number="28">    bfs aId S.empty (Q.singleton (<span class="dv">0</span>, bId))</a>
+<a class="sourceLine" id="cb6-29" data-line-number="29"></a>
+<a class="sourceLine" id="cb6-30" data-line-number="30"><span class="ot">main ::</span> <span class="dt">IO</span> ()</a>
+<a class="sourceLine" id="cb6-31" data-line-number="31">main <span class="fu">=</span> <span class="kw">do</span> </a>
+<a class="sourceLine" id="cb6-32" data-line-number="32">    E.setLocaleEncoding E.utf8</a>
+<a class="sourceLine" id="cb6-33" data-line-number="33">    result <span class="ot">&lt;-</span> calculateSeperationNumber <span class="st">&quot;水瀬いのり&quot;</span> <span class="st">&quot;水樹奈々&quot;</span></a>
+<a class="sourceLine" id="cb6-34" data-line-number="34">    print result</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb7-1" data-line-number="1">$ <span class="ex">stack</span> exec scrape <span class="op">&gt;</span> results</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">$ <span class="fu">head</span> results</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="kw">(</span><span class="ex">ActorKey</span> {unActorKey = SqlBackendKey {unSqlBackendKey = 2578}},<span class="ex">ActorKey</span> {unActorKey = SqlBackendKey {unSqlBackendKey = 2573}}<span class="kw">)</span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="kw">(</span><span class="ex">0</span>,ActorKey {unActorKey = SqlBackendKey {unSqlBackendKey = 2573}}<span class="kw">)</span></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="kw">(</span><span class="ex">1</span>,ActorKey {unActorKey = SqlBackendKey {unSqlBackendKey = 1}}<span class="kw">)</span></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="kw">(</span><span class="ex">1</span>,ActorKey {unActorKey = SqlBackendKey {unSqlBackendKey = 7}}<span class="kw">)</span></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="kw">(</span><span class="ex">1</span>,ActorKey {unActorKey = SqlBackendKey {unSqlBackendKey = 8}}<span class="kw">)</span></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="kw">(</span><span class="ex">1</span>,ActorKey {unActorKey = SqlBackendKey {unSqlBackendKey = 28}}<span class="kw">)</span></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="kw">(</span><span class="ex">1</span>,ActorKey {unActorKey = SqlBackendKey {unSqlBackendKey = 29}}<span class="kw">)</span></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="kw">(</span><span class="ex">1</span>,ActorKey {unActorKey = SqlBackendKey {unSqlBackendKey = 30}}<span class="kw">)</span></a>
+<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="kw">(</span><span class="ex">1</span>,ActorKey {unActorKey = SqlBackendKey {unSqlBackendKey = 38}}<span class="kw">)</span></a>
+<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="kw">(</span><span class="ex">1</span>,ActorKey {unActorKey = SqlBackendKey {unSqlBackendKey = 41}}<span class="kw">)</span></a>
+<a class="sourceLine" id="cb7-13" data-line-number="13">$ <span class="fu">tail</span> results</a>
+<a class="sourceLine" id="cb7-14" data-line-number="14"><span class="kw">(</span><span class="ex">2</span>,ActorKey {unActorKey = SqlBackendKey {unSqlBackendKey = 2559}}<span class="kw">)</span></a>
+<a class="sourceLine" id="cb7-15" data-line-number="15"><span class="kw">(</span><span class="ex">2</span>,ActorKey {unActorKey = SqlBackendKey {unSqlBackendKey = 2562}}<span class="kw">)</span></a>
+<a class="sourceLine" id="cb7-16" data-line-number="16"><span class="kw">(</span><span class="ex">2</span>,ActorKey {unActorKey = SqlBackendKey {unSqlBackendKey = 2563}}<span class="kw">)</span></a>
+<a class="sourceLine" id="cb7-17" data-line-number="17"><span class="kw">(</span><span class="ex">2</span>,ActorKey {unActorKey = SqlBackendKey {unSqlBackendKey = 2568}}<span class="kw">)</span></a>
+<a class="sourceLine" id="cb7-18" data-line-number="18"><span class="kw">(</span><span class="ex">2</span>,ActorKey {unActorKey = SqlBackendKey {unSqlBackendKey = 2569}}<span class="kw">)</span></a>
+<a class="sourceLine" id="cb7-19" data-line-number="19"><span class="kw">(</span><span class="ex">2</span>,ActorKey {unActorKey = SqlBackendKey {unSqlBackendKey = 2574}}<span class="kw">)</span></a>
+<a class="sourceLine" id="cb7-20" data-line-number="20"><span class="kw">(</span><span class="ex">2</span>,ActorKey {unActorKey = SqlBackendKey {unSqlBackendKey = 2575}}<span class="kw">)</span></a>
+<a class="sourceLine" id="cb7-21" data-line-number="21"><span class="kw">(</span><span class="ex">2</span>,ActorKey {unActorKey = SqlBackendKey {unSqlBackendKey = 2576}}<span class="kw">)</span></a>
+<a class="sourceLine" id="cb7-22" data-line-number="22"><span class="kw">(</span><span class="ex">2</span>,ActorKey {unActorKey = SqlBackendKey {unSqlBackendKey = 2577}}<span class="kw">)</span></a>
+<a class="sourceLine" id="cb7-23" data-line-number="23"><span class="ex">Just</span> 2</a></code></pre></div>
+<p>しかし時間がかかりすぎるのと、経路が欲しい。</p>
+<p>Sqliteに投げるべき制約を手元で解いていたことに気づいた。</p>
+<p>foldl/foldl’/foldrでどれがどれなのかわからなって毎回 <a href="https://stackoverflow.com/questions/384797/implications-of-foldr-vs-foldl-or-foldl" class="uri">https://stackoverflow.com/questions/384797/implications-of-foldr-vs-foldl-or-foldl</a> に行き着いて解決する。いい加減覚えたい。</p>
+<p>声優が出演するアニメの全ての声優が出演するアニメの和集合をPersistentに渡したら “parser stack overflow”と出て笑った。</p>
+<p>ORでかかる制約を一つ一つSQLiteに投げるより一つのクエリにして投げたほうがいいだろうとふんでまとめて投げたら（多分）SQLiteのパーサがオーバーフローするから制約10個をまとめて投げる方式に切り替えたら寧ろ10倍オーダーで遅くなった。むむ、となって一つひとつ投げる方式に戻してメモリプロファイリングを掛けたら<strong>のべ100GB以上のアロケーション</strong>が発生していた。</p>
+<p>えいやと適当なところにStrictness Annotation付けたらアロケーション量がだいぶ減ったが、未だにアホみたいな量のアロケーションが発生しているしパフォーマンスも芳しくないということで<code>stack build --profile</code>を実行したら全ての依存パッケージの再ビルドが始まって真顔になっている。</p>
+<p>去年の4月にノートパソコンを購入した当時はi7だし機械学習でもやろうとしない限り問題ないだろうと高を括っていたが、NixのビルドといいHaskellのビルドといい CPUの4つのコアが100%に張り付いてブラウザの動きがトロくなってくることが多い。半分冗談でデスクトップマシンの調達の話をこの間の#class-aiでしていたが、購入の検討をしなければいけないかもしれない。</p>
 <h3 id="watchしている日報">watchしている日報</h3>
 <ul>
 <li><a href="https://nippo.wikihub.io/@azyobuzin/articles" class="uri">https://nippo.wikihub.io/@azyobuzin/articles</a></li>
@@ -426,6 +522,7 @@ sqlite&gt; select avg(cnt) from (select count(*) as cnt from role group by actor
 <li><a href="https://soundcloud.com/tobato/listen-to-the-music-mashup">Listen To The Music (オオカミハート Mashup)</a></li>
 <li><a href="https://soundcloud.com/tobato/rdcmqw5b8i0y">最強@メイト計画</a></li>
 <li><a href="https://soundcloud.com/tobato/aimsmonolith-slip-bootlegbootleg">AIMS(monolith slip BootlegのBootleg)</a></li>
+<li><a href="https://www.youtube.com/watch?v=a_rrj1Xh5LI">《公式》フラジール / GUMI</a></li>
 </ul>
 <h2 id="明日やるべきこと">明日やるべきこと</h2>
 <!--
