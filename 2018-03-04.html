@@ -401,7 +401,7 @@ sqlite&gt; select count(*) from anime;
 sqlite&gt; select count(*) from role;
 100555</code></pre>
 <p>声優の数とアニメの数がほぼ1:1なのが少し意外。アニメ一つに参加する声優の人数の平均をnとすると声優一人あたり参加するアニメの総数の平均もほぼn個ってことかな？</p>
-<pre><code>% sqlite3 db.sqlite
+<pre><code>$ sqlite3 db.sqlite
 SQLite version 3.21.0 2017-10-24 18:55:49
 Enter &quot;.help&quot; for usage hints.
 sqlite&gt; select avg(cnt) from (select count(*) as cnt from role group by anime_id);
