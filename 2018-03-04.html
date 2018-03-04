@@ -324,7 +324,11 @@ var twemoji=function(){"use strict";var twemoji={base:"https://twemoji.maxcdn.co
 </tr>
 <tr class="odd">
 <td style="text-align: left;">19:30~</td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">スクレイピング</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">24:30~</td>
+<td style="text-align: center;">シャワー</td>
 </tr>
 </tbody>
 </table>
@@ -509,6 +513,7 @@ sqlite&gt; select avg(cnt) from (select count(*) as cnt from role group by actor
 <p>ORでかかる制約を一つ一つSQLiteに投げるより一つのクエリにして投げたほうがいいだろうとふんでまとめて投げたら（多分）SQLiteのパーサがオーバーフローするから制約10個をまとめて投げる方式に切り替えたら寧ろ10倍オーダーで遅くなった。むむ、となって一つひとつ投げる方式に戻してメモリプロファイリングを掛けたら<strong>のべ100GB以上のアロケーション</strong>が発生していた。</p>
 <p>えいやと適当なところにStrictness Annotation付けたらアロケーション量がだいぶ減ったが、未だにアホみたいな量のアロケーションが発生しているしパフォーマンスも芳しくないということで<code>stack build --profile</code>を実行したら全ての依存パッケージの再ビルドが始まって真顔になっている。</p>
 <p>去年の4月にノートパソコンを購入した当時はi7だし機械学習でもやろうとしない限り問題ないだろうと高を括っていたが、NixのビルドといいHaskellのビルドといい CPUの4つのコアが100%に張り付いてブラウザの動きがトロくなってくることが多い。半分冗談でデスクトップマシンの調達の話をこの間の#class-aiでしていたが、購入の検討をしなければいけないかもしれない。</p>
+<p>ページの重さといえば<a href="http://idlewords.com/talks/website_obesity.htm">The Website Obesity Crisis</a> が好き。Maciej Ceglowski氏のスライドはどれも面白い。</p>
 <h3 id="watchしている日報">watchしている日報</h3>
 <ul>
 <li><a href="https://nippo.wikihub.io/@azyobuzin/articles" class="uri">https://nippo.wikihub.io/@azyobuzin/articles</a></li>
