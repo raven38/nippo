@@ -126,12 +126,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>人の欲しいものリストを見るといい本が見つかる。持っている/読んだ本のリストの方が参考になるっちゃ参考になるけど。</p>
 <p>スクレイピング、少し進捗が出たがだいぶ汚い。Tagsoupの設計上多少はしょうがない<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> んだろうけど。</p>
 <figure>
-<img src="src/img/extractAnimeList.png" alt="extractAnimeList: グチャッ…ってしてる" /><figcaption>extractAnimeList: グチャッ…ってしてる</figcaption>
+<img src="./img/extractAnimeList.png" alt="extractAnimeList: グチャッ…ってしてる" /><figcaption>extractAnimeList: グチャッ…ってしてる</figcaption>
 </figure>
 <p>HaskellのShowがデフォルトで日本語をエスケープしちゃう問題はunicode-showで解決できたっちゃできたんだけどそれとは別途<code>stack ghci</code>で上手く日本語の入力・表示ができない。<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>ghci使えなくていちいち<code>stack exec scrape</code>すると著しくフィードバックループを回す速度が落ちてストレスが溜まる。</p>
 <p>本アドベントカレンダーが4日目で止まっていることを思い出した。</p>
 <figure>
-<img src="src/img/extractAnimeList2.png" alt="extractAnimeList: 地獄" /><figcaption>extractAnimeList: 地獄</figcaption>
+<img src="./img/extractAnimeList2.png" alt="extractAnimeList: 地獄" /><figcaption>extractAnimeList: 地獄</figcaption>
 </figure>
 <p>限界がやってきた。スクレイピングライブラリの限界というよりWikipediaの記述の仕方がパースしにくいことが原因。載っている声優の数はだいぶ少ないが、 <a href="http://lain.gr.jp/voicedb" class="uri">http://lain.gr.jp/voicedb</a>をスクレイプすることを検討している。</p>
 <p>YouTubeをiframe埋め込みした途端ページが極端に重くなることに気づいた。対策としてまず思い浮かぶのは<a href="http://motherfuckingwebsite.com/" class="uri">http://motherfuckingwebsite.com/</a>で有名な<a href="http://txti.es/">txti</a> の<a href="http://txti.es/images" class="uri">http://txti.es/images</a>みたいなやり方だがPandocフィルタでも使わないと実現できなさそうだ。日報のためにそこまでするか？という話がある。</p>
