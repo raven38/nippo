@@ -58,6 +58,10 @@
 <td style="text-align: left;">20:00~</td>
 <td style="text-align: center;">Person of Interest視聴</td>
 </tr>
+<tr class="even">
+<td style="text-align: left;">22:00~</td>
+<td style="text-align: center;">WSLのインストール</td>
+</tr>
 </tbody>
 </table>
 <p>まともな起床時間継続1日目。人生にログインボーナスが欲しい。</p>
@@ -69,10 +73,21 @@
 <p><a href="https://www.youtube.com/watch?v=A0FZIwabctw">Falcon Heavy &amp; Starman</a></p>
 <p>身の回りで「プログラミングを学びたい」と聞いて上手く行った例が極端に少ない。自分が悪いのか、プログラミングにinherentな難しい要素があるのか。 Haskell Programming from First Principlesの著者Chris Allenが面白いことを言っていて<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> プログラミングを教える時は大体自分が学んだ方法しかないと思いこんで教えがち。実際思い当たる節はあって、そのせいでいたずらに失敗率をあげていたのかもしれない。 Code Bootcamp等はどのようにして指導しているのだろうか？</p>
 <p>弊学科では最初に学ぶ言語をCからPythonに切り替えるらしいという噂を聞いたが、幸先の良いスタートだと思う。</p>
+<p>せっかく色々日報で書いているわけだし週1ぐらいで自分の日報見返した方がいいな。案とか結構忘れがち。</p>
+<p><a href="http://floating-point-gui.de/">What Every Programmer Should Know About Floating-Point Arithmetic</a></p>
+<p>よい資料。</p>
+<p>こういういい資料を見つけるととりあえずPinboardに突っ込む習慣があるが、 full-text searchの精度が微妙なのが長年の悩み。この話をしたらブックマーク数は高々数千なだし手元に落としてきて検索するのはどうだ、みたいな提案を誰かがして確かにとなった記憶がある。結局実行に移していない。</p>
+<p>手元のWindows仮想マシにWSLをインストールした。何かをインストールするときに一々babysitしなきゃいけないのひさしぶりだ。Microsoft Store?が何故かエラーで開けなくなる問題に引っかかり悪戦苦闘。不透明なシステムのトラブルシューティングをする時って上手く行くって祈るしかなくて嫌い。Windowsで何かするなら初手 Chocolateyかなと思ってやってた時期あったけどパッケージの質があまりよくなくて断念した記憶がある。今はもう少しまともになったりしているのだろうか。</p>
+<p>しかしWSL完全にUbuntuで本当にすごいと思う。X周りも動いたりするのだろうか。</p>
+<p><a href="https://qiita.com/nishemon/items/bb3aca972404f68bfcd6">Windows Subsystem for Linux + X Windowを1.024倍くらい使いこなすための方法</a></p>
+<p>できるようだ。</p>
+<p>Nixインストールしようとしたら<a href="https://github.com/NixOS/nixpkgs/issues/30391#issuecomment-339803194">SQLite関係のエラー</a>に引っかかった。調べた<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>限りだと動くらしいからまた今度試そうと思う。 SATySFiをビルドできるか検証したい。</p>
+<p>あとはmacOSだけど、高校生の間使っていたMBAを初期化して検証することを検討している。 macOSでNixOSみたいなモジュールを使えるようにする<a href="https://github.com/LnL7/nix-darwin">nix-darwin</a> が気になっている。</p>
 <section class="footnotes">
 <hr />
 <ol>
 <li id="fn1"><p><a href="https://www.youtube.com/watch?v=Bg9ccYzMbxc">How to Learn Haskell in Less Than 5 Years</a><a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p><a href="https://github.com/Microsoft/WSL/issues/743" class="uri">https://github.com/Microsoft/WSL/issues/743</a>, <a href="https://github.com/NixOS/nixpkgs/issues/30391" class="uri">https://github.com/NixOS/nixpkgs/issues/30391</a>, <a href="https://www.tweag.io/posts/2017-11-10-nix-on-wsl.html" class="uri">https://www.tweag.io/posts/2017-11-10-nix-on-wsl.html</a><a href="#fnref2" class="footnote-back">↩</a></p></li>
 </ol>
 </section>
 <a href="./index.html">一覧</a>
