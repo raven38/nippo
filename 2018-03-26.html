@@ -202,6 +202,12 @@ CallStack (from HasCallStack):
 <p>となり<code>undefined</code>がちゃんと評価されていることが分かる。</p>
 <p>いや、よく考えたらStrictness Annotation付けてもWHNFまでしか評価しないんだった。 <code>return [undefined] &gt;&gt; return 1</code>は上手く行っちゃうわ。</p>
 <p>秋のアルゴリズムの講義の時にTAoCPの1巻と4巻をちょっと読んでみて、アルゴリズムを1つ実装してみたんだけど、1巻で自分が如何に数学<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> をサボってきたかを痛感してきたし、いつか隅々まで理解できるところまでいきたい。というかアルゴリズムの解説が一切なくてただポンとpseudocodeを掲載するの酷すぎない？一々解説書いてたら書く量がn倍になるんだろうけど。</p>
+<p>いい話: <a href="https://eli.thegreenplace.net/2018/conditional-probability-and-bayes-theorem/">Conditional probability and Bayes’ theorem</a></p>
+<p>TeslaでHaskell使っているという話: <a href="https://np.reddit.com/r/haskell/comments/84r1dp/summer_2018_internship_opportunity_with_tesla_inc/">Summer 2018 internship opportunity with Tesla, Inc.</a></p>
+<p>C code generationとあるけどGaloisのcopilotを使っているのだろうか。</p>
+<p>Haskell書いてて思うのは、Haskellについて詳しく知っている人が身近に居て欲しい。例えば、上の<code>newtype Identity a = Identity { runIdentity :: a }</code>みたいな、型引数<code>a</code>についてなんの仮定も置いていないのに<code>deriving Eq</code>でEq型クラスのインスタンスにできてしまうのか<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>、とかパッと聞いたら答えてくれてるような。</p>
+<p><a href="https://leepike.wordpress.com/2010/12/18/haskell-and-hardware-for-the-holidays/">Haskell and Hardware for the Holidays</a><br />
+copilot触りたい。</p>
 <h2 id="todo">TODO</h2>
 <p>歯医者の予約</p>
 <ul>
@@ -211,6 +217,7 @@ CallStack (from HasCallStack):
 <hr />
 <ol>
 <li id="fn1"><p>mathematicsというよりかはapplied mathematicsかな<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p><a href="https://stackoverflow.com/questions/3864647/how-does-deriving-work-in-haskell">How does deriving work in Haskell?</a> や<a href="https://www.reddit.com/r/haskell/comments/28gxxz/how_does_deriving_eq_work/">How does “deriving Eq” work?</a> を読む限り黒魔術のようだ（そして、Eq a =&gt; Eq (Identity a)と仮定を置いているんだろう）。<a href="#fnref2" class="footnote-back">↩</a></p></li>
 </ol>
 </section>
 <script src="//twemoji.maxcdn.com/2/twemoji.min.js?2.5"></script>
