@@ -125,11 +125,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr class="even">
 <td style="text-align: left;">18:30~</td>
+<td style="text-align: center;">調べもの</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">21:30~</td>
+<td style="text-align: center;">cs231n</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">22:30~</td>
 <td style="text-align: center;"></td>
 </tr>
 </tbody>
 </table>
-<p>朝朝食に呼ばれたた時、自動微分とIncremental Calculationのことが頭に残ってたらしく自分のところでは勾配が0だから再計算されない、行かなくても大丈夫… みたいな謎論法で二度寝した。</p>
+<p>朝朝食に呼ばれたた時、自動微分とIncremental Computationのことが頭に残ってたらしく自分のところでは勾配が0だから再計算されない、行かなくても大丈夫… みたいな謎論法で二度寝した。</p>
 <p>事務作業を一通り片付けた。</p>
 <p>Identityモナドで評価の順番をうまい感じにできないか、みたいな話が流れてきて調べようと思った。</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="ot">{-# LANGUAGE InstanceSigs #-}</span></a>
@@ -208,10 +216,22 @@ CallStack (from HasCallStack):
 <p>Haskell書いてて思うのは、Haskellについて詳しく知っている人が身近に居て欲しい。例えば、上の<code>newtype Identity a = Identity { runIdentity :: a }</code>みたいな、型引数<code>a</code>についてなんの仮定も置いていないのに<code>deriving Eq</code>でEq型クラスのインスタンスにできてしまうのか<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>、とかパッと聞いたら答えてくれてるような。</p>
 <p><a href="https://leepike.wordpress.com/2010/12/18/haskell-and-hardware-for-the-holidays/">Haskell and Hardware for the Holidays</a><br />
 copilot触りたい。</p>
+<p>tiling wm使っているくせにstartxとかそこらへんに関して無知で情けない。 <a href="https://www.youtube.com/playlist?list=PLA8E036608C60B7E5">An X Window System Tutorial</a><br />
+丁寧にxinitrcの挙動の初歩を解説していて、分かりやすかった。</p>
+<p>automatic differentiationとincremental computationって似てるよなぁ、ってなんとなく思っていたらその2つをつなげる論文を見つけた。<br />
+<a href="https://arxiv.org/abs/1611.03429">Evolving the Incremental λ Calculus into a Model of Forward AD</a></p>
+<p>Incremental λ-Calculus自体も前見た気がして、少し調べてみた。</p>
+<ul>
+<li><a href="https://inc-lc.github.io/">Incremental λ-Calculus</a></li>
+<li><a href="https://inc-lc.github.io/resources/2015-01-22%20ILC%20Paris.pdf">Incrementalizing λ-Calculi by Static Differentiation (slides)</a></li>
+</ul>
+<p>スライドの後半から分からなくなった。型理論に悔しいぐらい疎い。</p>
+<p>今回のcs231nは強化学習の紹介だった。結構Self-containedでよかった。 Hard Attentionの話が出てきて、雰囲気をやっと把握できた。自然言語処理のAttentionと全然関係ない話だった。これでcs231nの中身は終わりっぽく、残りの2つの講義はゲストレクチャー。ゲストレクチャーでIan Goodfellowが登壇するの流石Stanfordとしか言えない。</p>
 <h2 id="todo">TODO</h2>
 <p>歯医者の予約</p>
 <ul>
 <li><a href="https://www.youtube.com/watch?v=6dZnp5MIH8s">The Chemical Brothers - Snow</a></li>
+<li>t+pazolite feat. Rizna - It’s a “10 Bats”</li>
 </ul>
 <section class="footnotes">
 <hr />
