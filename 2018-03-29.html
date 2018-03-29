@@ -4,13 +4,16 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>日報</title>
+  <title>日報 2018-03-29</title>
   <style type="text/css">
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/contrib/auto-render.min.js"></script><script>document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body);
+  });</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css" />
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -18,41 +21,83 @@
 </head>
 <body>
 <header>
-<h1 class="title">日報</h1>
+<h1 class="title">日報 2018-03-29</h1>
 </header>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">9:00~</td>
+<td style="text-align: center;">起床+シャワー+バナナを食す</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">9:30~</td>
+<td style="text-align: center;">スライド作り</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">13:00~</td>
+<td style="text-align: center;">機械学習交流会</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">21:30~</td>
+<td style="text-align: center;">無</td>
+</tr>
+</tbody>
+</table>
+<p>朝起きて、パソコンカタカタしながらバナナをかじる。大変気分がいい。</p>
+<p>機械学習交流会のメモ:</p>
+<h3 id="goodfellow氏おすすめgan論文10本解説">1. 「Goodfellow氏おすすめGAN論文10本解説」</h3>
 <ul>
-<li><a href="./2018-03-29.html">2018-03-29</a></li>
-<li><a href="./2018-03-28.html">2018-03-28</a></li>
-<li><a href="./2018-03-27.html">2018-03-27</a></li>
-<li><a href="./2018-03-26.html">2018-03-26</a></li>
-<li><a href="./2018-03-25.html">2018-03-25</a></li>
-<li><a href="./2018-03-24.html">2018-03-24</a></li>
-<li><a href="./2018-03-23.html">2018-03-23</a></li>
-<li><a href="./2018-03-22.html">2018-03-22</a></li>
-<li><a href="./2018-03-21.html">2018-03-21</a></li>
-<li><a href="./2018-03-20.html">2018-03-20</a></li>
-<li><a href="./2018-03-19.html">2018-03-19</a></li>
-<li><a href="./2018-03-17.html">2018-03-17</a></li>
-<li><a href="./2018-03-16.html">2018-03-16</a></li>
-<li><a href="./2018-03-15.html">2018-03-15</a></li>
-<li><a href="./2018-03-14.html">2018-03-14</a></li>
-<li><a href="./2018-03-13.html">2018-03-13</a></li>
-<li><a href="./2018-03-12.html">2018-03-12</a></li>
-<li><a href="./2018-03-11.html">2018-03-11</a></li>
-<li><a href="./2018-03-10.html">2018-03-10</a></li>
-<li><a href="./2018-03-09.html">2018-03-09</a></li>
-<li><a href="./2018-03-08.html">2018-03-08</a></li>
-<li><a href="./2018-03-07.html">2018-03-07</a></li>
-<li><a href="./2018-03-06.html">2018-03-06</a></li>
-<li><a href="./2018-03-05.html">2018-03-05</a></li>
-<li><a href="./2018-03-04.html">2018-03-04</a></li>
-<li><a href="./2018-03-03.html">2018-03-03</a></li>
-<li><a href="./2018-03-02.html">2018-03-02</a></li>
-<li><a href="./2018-03-01.html">2018-03-01</a></li>
-<li><a href="./2018-02-28.html">2018-02-28</a></li>
-<li><a href="./2018-02-27.html">2018-02-27</a></li>
-<li><a href="./2018-02-26.html">2018-02-26</a></li>
-<li><a href="./2018-02-25.html">2018-02-25</a></li>
+<li>Progressive GAN</li>
 </ul>
+<p>高画質画像では生成が難しくDiscriminatorが有利になってしまいうまく学習ができなった。低解像度の画像の生成から始めて、層を増やすことにより段々高画質にしていく。</p>
+<ul>
+<li>Spectral Normalization</li>
+</ul>
+<p>Weight Normalizationの新しい手法を提案し、Discriminatorの学習を安定させることができた。副次的な結果として多クラスの画像生成が上手く行くようになった。</p>
+<ul>
+<li>Projection Discriminator</li>
+</ul>
+<p>従来のConditional GANのDiscriminatorに入力する教師ラベルは単純にconcat等が行われていたが、教師ラベルも分散表現に落とし込むことにより、AC-GANで行われるAdversarial LossとClassification Lossのウェイト付けをする必要がなくなる。</p>
+<ul>
+<li>pix2pixHD</li>
+</ul>
+<p>すごいよ（動画参照）。</p>
+<ul>
+<li>Are GANs created equal?</li>
+</ul>
+<p>どのGANが本当にいいのかの手法が難しくて、チューニング+FIDでどの手法もあまり差がなかったという結論に。よい評価指標を見つけましょうという話。</p>
+<ul>
+<li>Improved Training of Wasserstein GANs</li>
+</ul>
+<p>Lipschitz条件を満たすためこれまではWeight Clipping (<span class="math inline">\(W = \min(\alpha, W\)</span>))が行われていたが勾配のノルムのペナルティを付けた方が学習が安定する。</p>
+<ul>
+<li>StackGAN++</li>
+</ul>
+<p>聴き逃した。</p>
+<ul>
+<li>Privacy-preserving</li>
+</ul>
+<p>GANで教師データを生成することによって機械学習アルゴリズムにおいて差分プライバシーを実現。</p>
+<ul>
+<li>GANs with encoders</li>
+</ul>
+<p>VAEの変分下界からGANを導出して取り込んだ。</p>
+<ul>
+<li>theory of GAN convergence</li>
+</ul>
+<p>GANの学習の収束についての解析。</p>
+<h3 id="汎用人工知能">2. 「汎用人工知能」</h3>
+<p>汎用人工知能のモデル化</p>
+<h3 id="基礎からやる確率課程">3. 「基礎からやる確率課程」</h3>
+<p>測度論・確率論に関するfree-formな数学に関する講義という感じ。</p>
+<h3 id="論文略説-stochastic-thermodynamics-interpretation-of-information-geometry">4. 「論文略説: Stochastic Thermodynamics Interpretation of Information Geometry」</h3>
+<p>ここらへんから追えなくなってきた。最後にDifferentiatial Neural Computerの解説があったが、アーキテクチャが大分込み入ってる（!!!微分可能なガベージコレクションもどきが乗っかってる!!!）ため正直あまり飲み込めなかった。</p>
+<p>メモ終わり。</p>
+<p>感想としては、発表の多くは相当高いレベルの聴衆を想定していて置いてけぼりにされてる感じがあった。ただ、普通のLT会と違って観客に合わせてテーマを簡単に変えたりできない分調整は難しいなとも思うし、なかなか難しい。<span class="citation" data-cites="latte_zeroによる">@latte_zeroによる</span>話は数日掛けてやるセミナーを数十分でやった感じがあって、数日掛けてやる機会があれば是非参加して勉強したいなと思った。</p>
+<p>交流会が終わってぐたっとしている。資料を作ったものの、残念ながら発表をする時間がなかった。しかし、<span class="citation" data-cites="RyoKamoiや先輩に確認したところ既知の内容ではないようで">@RyoKamoiや先輩に確認したところ既知の内容ではないようで</span>よかった。自動微分なぜこんなにしられていないんだろうか。当日にスライドを作り始めたのもあって実装はしていなかったが、もしかしたら実装するかもしれない。</p>
+<p>hmatrixによるtype-safeな行列演算とadでスッとNN組もうかなって気持ちになって調べてみたところ、どうやらadとBLASラッパっぽいライブラリは相性が悪いらしい。更に色々調べてみたら <a href="https://summer.haskell.org/ideas.html#accelerate-automatic-differentiation">Accelerate用のADライブラリの開発がSummer of Haskellの課題</a>になっているのを見つけた。逆にこれまでなかったのか…と衝撃。</p>
+<script src="//twemoji.maxcdn.com/2/twemoji.min.js?2.5"></script>
+<script>document.addEventListener("DOMContentLoaded", () => twemoji.parse(document.body, { folder: "svg", ext: ".svg" }));</script>
+<a href="./index.html">一覧</a>
 </body>
 </html>
