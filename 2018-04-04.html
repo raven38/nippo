@@ -66,6 +66,7 @@
 <p>数学の才能と言えば、新歓でビラ配っていると文系のB1が「俺数弱なんで〜」みたいな理由でビラを断られてしまうことが何度かあって、昨日の飲み会で（情報系をはじめとする）工学系は理論が難しくて逃げてきた人間が行く場所という話が出たことを思い出した。難しそうなもの<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>から逃げ続けて終わるお前の人生。</p>
 <p>3章の終わりまでの分の動画を見た。なにこれすごい、めっちゃわかりやすい。共役な確率分布を事前分布として採用すると事後分布の計算のときに正規化定数が<span class="math inline">\(\kappa\)</span>になるなんて話本にあったっけ？ PRMLに関するこんな感じのまとめの動画があったら金出してもいい<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>と思った。</p>
 <p>Haskellで言うcatMaybesが欲しくてぱっと計算してもそれっぽいのがなかった<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>けど、 filter_map idで実現できそうだと思ってやってみたらborrow関係で上手く行かず、結局愚直に書いた。Hoogleみたいなものがほしい。そして、型シグネチャをもっと読み書きしやすい形にしてほしい気持ちがある。そういえばRustの型システムってどういう系統なんだろうか。</p>
+<p><span class="citation" data-cites="__pandaman64__先輩に助けを仰いだところ">@__pandaman64__先輩に助けを仰いだところ</span>、flat_mapでええよ、で解決。 OptionはIter trait実装してたのかと驚く。</p>
 <p>面白い記事を見つけた: <a href="https://sdleffler.github.io/RustTypeSystemTuringComplete/">Rust’s Type System is Turing-Complete</a></p>
 <p>重要なコードはあらかた書き上げて激The rest is just boring IO<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>状態。</p>
 <section class="footnotes">
