@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>日報 2018-04-17</title>
+  <title>日報 2018-04-18</title>
   <style type="text/css">
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -18,88 +18,48 @@
 </head>
 <body>
 <header>
-<h1 class="title">日報 2018-04-17</h1>
+<h1 class="title">日報 2018-04-18</h1>
 </header>
 <table>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">8:00~</td>
-<td style="text-align: center;">起床+ゴロゴロ</td>
+<td style="text-align: left;">9:00~</td>
+<td style="text-align: center;">起床+読書</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">8:30~</td>
-<td style="text-align: center;">朝食+無</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;">9:30~</td>
-<td style="text-align: center;">シャワー+皿洗い</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">10:00~</td>
-<td style="text-align: center;">出発</td>
+<td style="text-align: center;">朝食+読書</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">10:45~</td>
-<td style="text-align: center;">講義</td>
+<td style="text-align: left;">10:00~</td>
+<td style="text-align: center;">nixpkgs</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">12:00~</td>
-<td style="text-align: center;">昼食+MOOC</td>
+<td style="text-align: left;">11:00~</td>
+<td style="text-align: center;">シャワー+昼食</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">13:00~</td>
-<td style="text-align: center;">講義</td>
+<td style="text-align: center;">無</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">18:00~</td>
-<td style="text-align: center;">帰宅</td>
+<td style="text-align: left;">15:00~</td>
+<td style="text-align: center;">歯医者</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">19:00~</td>
-<td style="text-align: center;">夕食</td>
+<td style="text-align: left;">16:00~</td>
+<td style="text-align: center;">無+睡眠</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">20:00~</td>
-<td style="text-align: center;">風呂掃除+無</td>
+<td style="text-align: left;">22:00~</td>
+<td style="text-align: center;"></td>
 </tr>
 </tbody>
 </table>
-<p>合計で12時間以上寝ていたようだ。寝る直前にごはんを食べたからか、体重がまた増えた。</p>
-<p>コンピュータアーキテクチャ: 記憶がない。</p>
-<p>GPGPUの動画を見ている。動画ではCを使うらしい。Cか〜〜〜</p>
-<p><a href="https://www.nvidia.com/docs/IO/116711/sc11-cuda-c-basics.pdf">CUDA C/C++ Basics</a></p>
-<p>何故か自衛隊員っぽい人がFF内にいる。何事。</p>
-<p>自然言語処理: n-gramモデルやるっぽい。これに90分掛けるのか…? 教授「いい加減な数学をやります」親の顔よりみたベイズの定理。「あまり真剣に数式はやらない」らしい。</p>
-<p><a href="https://blog.acolyer.org/2018/04/16/privacyguide-towards-an-implementation-of-the-eu-gdpr-on-internet-privacy-policy-evaluation/">PrivacyGuide: towards an implementation of the EU GDPR on Internet privacy policy evaluation</a></p>
-<p>著者に日本人が居てびっくりした。ブログ記事だけ読んで、論文の本文は読んでいない。</p>
-<p>JUMAN++を見ている。</p>
-<p><a href="http://lotus.kuee.kyoto-u.ac.jp/nl-resource/jumanpp/doc/jumanpp-slide.pdf">RNN言語モデルを用いた日本語形態素解析</a></p>
-<pre><code>$ echo &quot;にわにはにわにわとりがいる&quot; | result/bin/jumanpp
-にわ にわ にわ 名詞 6 普通名詞 1 * 0 * 0 &quot;代表表記:庭/にわ 漢字読み:訓 カテゴリ:場所-施設&quot;
-に に に 助詞 9 格助詞 1 * 0 * 0 NIL
-はにわ はにわ はにわ 名詞 6 普通名詞 1 * 0 * 0 &quot;代表表記:埴輪/はにわ カテゴリ:人工物-その他 ドメイン:文化・芸術&quot;
-にわとり にわとり にわとり 名詞 6 普通名詞 1 * 0 * 0 &quot;代表表記:鶏/にわとり 漢字読み:訓 カテゴリ:動物 ドメイン:料理・食事&quot;
-が が が 助詞 9 格助詞 1 * 0 * 0 NIL
-いる いる いる 動詞 2 * 0 子音動詞ラ行 10 基本形 2 &quot;代表表記:要る/いる&quot;
-@ いる いる いる 動詞 2 * 0 子音動詞ラ行 10 基本形 2 &quot;代表表記:煎る/いる ドメイン:料理・食事&quot;
-EOS</code></pre>
-<p>人工知能: 無。木探索、α-β法等々。チューリングテスト・中国語の部屋等の哲学的トピック。足し算の部屋は始めて聞いた。</p>
-<p><a href="https://plato.stanford.edu/entries/chinese-room/">The Chinese Room Argument</a></p>
-<p>足し算の部屋の論文: <a href="http://www.ijcai.org/Proceedings/09/Papers/241.pdf">Is it Enough to Get the Behaviour Right?</a></p>
-<p>カラツバ法が一瞬登場した。非常に読みやすくて、面白かった。</p>
-<p>組込みリアルタイムシステム: この講義を受けると伝えたところ、GPAを犠牲にするのか、と先輩に脅された。履修取消を検討している。</p>
-<p><a href="https://medium.com/hackathon-hackers/sam-altman-president-of-y-combinator-hackathon-hackers-ama-ab7eac22dd7">Sam Altman, President of Y Combinator. Hackathon Hackers AMA!</a></p>
-<p><a href="https://www.gwern.net/Complement">Laws of Tech: Commoditize Your Complement</a></p>
-<p>この話始めて知って、衝撃的。Joel SpolskyとかPaul Grahamは全部読んでおくべきなんだろうか。<a href="https://www.gwern.net/" class="uri">https://www.gwern.net/</a>、面白い話が集まっている。 <a href="https://danluu.com/" class="uri">https://danluu.com/</a>とともに日獣的にチェックするサイトに入れようと思う。</p>
-<p>nixpkgsのいくつかのPR、CI通らないなぁと不思議に思っていたけどめちゃくちゃ初歩的なミスをやらかしていた。<small>これだから動的型は…</small></p>
-<p>香港のビザが通ったようだ。🎉</p>
-<p>iPhoneの変なコネクタからイヤホンジャックに変換するやつをなくして数週間経つ。めちゃくちゃ不便。</p>
-<p><a href="https://ste.la/?x=%7B%22tag%22%3A%22Route_Presentation%22%2C%22contents%22%3A3%7D">Haskell in your Pocket</a>: exciting</p>
-<p>しかしGHCJSが吐くものかなり重いんだよなぁ…</p>
-<p>空前の日報ブーム。</p>
-<p>F#について考えている。どうせJavaとObjective-Cはやらなきゃいけないわけだし…（本当に？殺してくれ）</p>
-<p>libsweepが上手く動かない問題未だに解決できていない。一応Issueを立てた。仮想マシンのUbuntuで明日試してみようと思う。</p>
-<p>ま〜〜〜〜〜〜〜た充電器繋いだと思ったら導通してなくて突然電源が落ちるやつやらかしちゃったよ。いい加減残り10分切ったらめっちゃダイアログ出す、とか気付くようにする仕組みを導入しなきゃな。</p>
+<p>Master theoremすごい、Master感ある。</p>
+<p><a href="https://www.youtube.com/watch?v=2V1FtfBDsLU">Effective Programs - 10 Years of Clojure - Rich Hickey</a></p>
+<p>JavaとHaskellが交互にディスられてる。後半になるにつれてHaskellに対するあたりが強くなっていく。直接名前を出していないようだけどExpression Problemの話をしたいようだ。まさに<a href="https://youtu.be/2V1FtfBDsLU?t=4120">ここ</a>とか。 Gary Bernhardtによる<a href="https://www.destroyallsoftware.com/talks/ideology">Ideology</a> を思い出した。</p>
+<p>歯医者で今度は左側の親知らずを抜いた。痛い…</p>
 <script src="//twemoji.maxcdn.com/2/twemoji.min.js?2.5"></script>
 <script>document.addEventListener("DOMContentLoaded", () => twemoji.parse(document.body, { folder: "svg", ext: ".svg" }));</script>
 <a href="./index.html">一覧</a>
