@@ -47,43 +47,63 @@
 <p>機械学習交流会のメモ:</p>
 <h3 id="goodfellow氏おすすめgan論文10本解説">1. 「Goodfellow氏おすすめGAN論文10本解説」</h3>
 <ul>
-<li>Progressive GAN</li>
+<li>
+Progressive GAN
+</li>
 </ul>
 <p>高画質画像では生成が難しくDiscriminatorが有利になってしまいうまく学習ができなった。低解像度の画像の生成から始めて、層を増やすことにより段々高画質にしていく。</p>
 <ul>
-<li>Spectral Normalization</li>
+<li>
+Spectral Normalization
+</li>
 </ul>
 <p>Weight Normalizationの新しい手法を提案し、Discriminatorの学習を安定させることができた。副次的な結果として多クラスの画像生成が上手く行くようになった。</p>
 <ul>
-<li>Projection Discriminator</li>
+<li>
+Projection Discriminator
+</li>
 </ul>
 <p>従来のConditional GANのDiscriminatorに入力する教師ラベルは単純にconcat等が行われていたが、教師ラベルも分散表現に落とし込むことにより、AC-GANで行われるAdversarial LossとClassification Lossのウェイト付けをする必要がなくなる。</p>
 <ul>
-<li>pix2pixHD</li>
+<li>
+pix2pixHD
+</li>
 </ul>
 <p>すごいよ（動画参照）。</p>
 <ul>
-<li>Are GANs created equal?</li>
+<li>
+Are GANs created equal?
+</li>
 </ul>
 <p>どのGANが本当にいいのかの手法が難しくて、チューニング+FIDでどの手法もあまり差がなかったという結論に。よい評価指標を見つけましょうという話。</p>
 <ul>
-<li>Improved Training of Wasserstein GANs</li>
+<li>
+Improved Training of Wasserstein GANs
+</li>
 </ul>
 <p>Lipschitz条件を満たすためこれまではWeight Clipping (<span class="math inline">\(W = \min(\alpha, W\)</span>))が行われていたが勾配のノルムのペナルティを付けた方が学習が安定する。</p>
 <ul>
-<li>StackGAN++</li>
+<li>
+StackGAN++
+</li>
 </ul>
 <p>聴き逃した。</p>
 <ul>
-<li>Privacy-preserving</li>
+<li>
+Privacy-preserving
+</li>
 </ul>
 <p>GANで教師データを生成することによって機械学習アルゴリズムにおいて差分プライバシーを実現。</p>
 <ul>
-<li>GANs with encoders</li>
+<li>
+GANs with encoders
+</li>
 </ul>
 <p>VAEの変分下界からGANを導出して取り込んだ。</p>
 <ul>
-<li>theory of GAN convergence</li>
+<li>
+theory of GAN convergence
+</li>
 </ul>
 <p>GANの学習の収束についての解析。</p>
 <h3 id="汎用人工知能">2. 「汎用人工知能」</h3>

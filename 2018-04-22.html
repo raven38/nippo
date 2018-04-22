@@ -4,13 +4,16 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>日報 2018-04-02</title>
+  <title>日報 2018-04-22</title>
   <style type="text/css">
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/contrib/auto-render.min.js"></script><script>document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body);
+  });</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css" />
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -18,62 +21,152 @@
 </head>
 <body>
 <header>
-<h1 class="title">日報 2018-04-02</h1>
+<h1 class="title">日報 2018-04-22</h1>
 </header>
 <table>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">9:00~</td>
-<td style="text-align: center;">起床+gdgd</td>
+<td style="text-align: center;">起床+朝食+動画+無</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">10:30~</td>
-<td style="text-align: center;">事務</td>
+<td style="text-align: left;">12:00~</td>
+<td style="text-align: center;">nixpkgs</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">12:00~</td>
-<td style="text-align: center;">大学へ</td>
+<td style="text-align: left;">12:30~</td>
+<td style="text-align: center;">昼食+皿洗い</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">??:??~</td>
-<td style="text-align: center;">記憶がない</td>
+<td style="text-align: left;">13:30~</td>
+<td style="text-align: center;">Rust</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">18:00~</td>
+<td style="text-align: center;">無+タイピングゲーム</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">19:00~</td>
+<td style="text-align: center;">夕食</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">19:30~</td>
+<td style="text-align: center;"></td>
 </tr>
 </tbody>
 </table>
-<p>結局昨日は曖昧になってニコニコを見たりひぐらしを読み返したりしていた。そういう日もあるでしょう。昨日部屋を片付けた結果部屋に大量に本が散乱し、漫画を置くいい場所があまり無いことがわかった。部室に持っていくのもありだとは思うけど、しばらく時間が経った後に現在何巻まで持っているか分からなくなってしまう問題が気になるのと、ふと読み返したくなったときに読めないという問題がある。いずれの問題も大学か大学周辺に住むことにより解決する。矢上に住みたい。</p>
-<p>恐ろしいことに、まだ腕にだるさが残っている。</p>
-<p>パソコン買うかーつってパーツ列挙してみて、合計するとBTOとあまり変わらないことに気付く。組み立てる手間を加味するとBTOの方が良さそうな気がするんだよな。</p>
-<p>頭が痛い。</p>
+<h2 id="mle">MLE</h2>
+<p><span class="math display">\[
+\begin{aligned}
+\hat{\mathbf{\theta}}
+&amp;= \mathop{\rm argmax}\limits_\mathbf{\theta} p(\mathbf{x}_{1 \ldots N} |\mathbf{\theta} ) \\
+&amp;= \mathop{\rm argmax}\limits_\mathbf{\theta} \prod^N_{i=1} p(\mathbf{x_i} |\mathbf{\theta} )
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+p(\mathbf{x}^* | \hat{\mathbf{\theta}})
+\]</span></p>
+<h2 id="map">MAP</h2>
+<p><span class="math display">\[
+\begin{aligned}
+\hat{\mathbf{\theta}}
+&amp;= \mathop{\rm argmax}\limits_\mathbf{\theta}p(\mathbf{\theta} |\mathbf{x}_{1 \ldots N}) \\
+&amp;= \mathop{\rm argmax}\limits_\mathbf{\theta} \frac{p(\mathbf{x}_{1 \ldots N} |\mathbf{\theta}) p(\mathbf{\theta})}{p(\mathbf{x}_{1 \ldots N})} \\
+&amp;= \mathop{\rm argmax}\limits_\mathbf{\theta} \frac{\prod^N_{i=1} p(\mathbf{x}_i |\mathbf{\theta}) p(\mathbf{\theta})}{p(\mathbf{x}_{1 \ldots N})} \\
+&amp;= \mathop{\rm argmax}\limits_\mathbf{\theta} \prod^N_{i=1} p(\mathbf{x}_i |\mathbf{\theta}) p(\mathbf{\theta})
+\end{aligned}
+\]</span></p>
+<p>MAPで事前分布が一様分布の場合MLEと一致する。</p>
+<p><span class="math display">\[
+p(\mathbf{x}^* | \hat{\mathbf{\theta}})
+\]</span></p>
+<h2 id="bayesian-approach">Bayesian Approach</h2>
+<p><span class="math display">\[
+\begin{aligned}
+p(\mathbf{\theta} | \mathbf{x}_{1 \ldots N})
+&amp;= \frac{\prod^N_{i=1} p(\mathbf{x}_i|\theta)p(\mathbf{\theta})}{p(\mathbf{x}_{1 \ldots N})}
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+p(\mathbf{x}^* | \mathbf{x}_{1 \ldots N}) = \int p(\mathbf{x}^* | \mathbf{\theta}) p(\mathbf{\theta} | \mathbf{x}_{1 \ldots N}) d\mathbf{\theta}
+\]</span></p>
+<p>Bayesian Approachで<span class="math inline">\(p(\mathbf{\theta} | \mathbf{x}_{1 \ldots N}) = \delta (\mathbf{\theta} - \hat{\mathbf{\theta}})\)</span> とするとMAPと一致する。</p>
+<p>混同するのでメモ。</p>
+<p>意識ない状態でAPIが生えていく〜</p>
+<p>ひたすらRustを書いている。おかげでBoring IOは多分半分ぐらい終わった。</p>
+<p><a href="https://cloud.google.com/vision/">Vision API - Image Content Analysis | Google Cloud</a></p>
+<p>予想以上に高くてびっくりしている。OCRをしない道を模索するべきか、roll my ownをするべきか。</p>
+<p>ふと自分のタイピング速度が気になってE-Typingと寿司打をやってみた。寿司打によると、平均キータイプ数速度は4.6回/秒らしい。昔よりは少し速くなった気がするけど、プログラミングとかをやっている人間にしてはまだ微妙な気がする。競プロをやることを考えると、6〜7回/秒ぐらいの方がいいんじゃないか。練習しようかな。</p>
+<p>書籍と東方EDMアレンジに金が溶けていく。</p>
+<p>Google Domainsながらく探していた「まともな」<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>レジストラっぽい。お名前ドットコムの利用を今すぐやめたい。やめようと思ってログインしようとしたらいつまで経ってもローディング画面が続いてログインできない。正気の沙汰とは思えない。</p>
+<p>GFMのタスクリストを日報に足そうとしている。nix-shell起動したらGHC落とし始めて地獄。nixos-18.03にピンしなければいいという話もある。<a href="https://cache.nixos.org/" class="uri">https://cache.nixos.org/</a> が遅すぎるのも問題。</p>
+<p>特に問題なくタスクリストを追加できた。</p>
 <ul>
 <li>
-カフェイン切れ
+<a href="https://www.youtube.com/watch?v=PwAgOqNvFGA">ORESAMA - オオカミハート (F.O.ver.)</a>
 </li>
 <li>
-二日酔い
+<a href="https://www.youtube.com/watch?v=dbck4uZ8v88">Kimi No Shiranai Monogatari feat. k*chan [ dj-Jo Remix ]</a>
 </li>
 <li>
-風邪
+<a href="https://www.youtube.com/watch?v=JwhrJQ8wq8U">Kakegurui OP: Deal with the Devil feat. Un3h [ dj-Jo Remix ] Extended Version</a>
 </li>
 <li>
-花粉症発症
+<a href="https://soundcloud.com/mihkamusic/mihka-x-the-end-kodokushi-1">Mihka! x Kyoto Black - Kodokushi （孤独死）</a>
+</li>
+<li>
+<a href="https://www.youtube.com/watch?v=MEQMkzjcLEA">deadmau5 - Some Chords</a>
+</li>
+<li>
+<a href="https://soundcloud.com/zekk-doujin/zekk-tomoyo">Zekk - TOMOYO</a>
+</li>
+<li>
+<a href="https://soundcloud.com/geoxor_official/poi">Poi</a>
 </li>
 </ul>
-<p>可能性が高そうな順番に原因を列挙してみた。季節の変わり目という感じがある。</p>
-<p>どうせ日吉に行くんだからついでに服とか靴を買おうなな。</p>
-<p><a href="https://twitter.com/ncweaver/status/980485587827224577" class="uri">https://twitter.com/ncweaver/status/980485587827224577</a></p>
-<p>このツイートに対するリプライが限界すぎる。</p>
-<p>教授と相談した結果、インターンの単位認定はなんとか降りそうだ。クオーター休む関係で受けられない講義で扱っている事柄にnon-trivialな話はきっとそこまでないだろう。しかし春の必修科目は来年受ける必要があるようで、来年は休学でもしない限り海外のインターンは無理みたいだ。</p>
-<p>もうダメみたいだ。酒を呷りながら確率ロボティクスを読んでいた記憶が残っている。他は何も…</p>
-<p>大分酔いが覚めてきた。事実上無職になって向かう目標<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>が無いまま曖昧に過ごしてきたことに気づいた。うだうだ。人々が職に就く様子が見えるが、各位はどういった長期的目標のためにどういう短期的目標に向かって動いているのだろうか？</p>
-<p>アーロンチェア、あまりにも高い。買うためにはまずクレジットカードの利用可能枠を倍にしなければいけないほど高い。これもしかしたらインターンで座っていた椅子かも? わからん。</p>
-<p>少し考えてみたが、パソコン買う必要ないな。大学の計算資源をうまいこと活用しようと思う。</p>
-<p><a href="https://www.cs.utexas.edu/~grauman/temp/GraumanFergus_Hashing_chapterdraft.pdf">Learning Binary Hash Codes for Large-Scale Image Search</a> にmetric learningという語句が出てきたので調べている。 <a href="http://researchers.lille.inria.fr/abellet/talks/metric_learning_tutorial_CIL.pdf">Tutorial on Metric Learning</a> によれば、凸最適化と何か関係があるようだ。</p>
-<p>weakly supervised learningという始めて見る語句を見つけたので調べる。 bootstrappingが例として挙げられていたが、ここでのbootstrapは統計学の bootstrap methodとは違うらしい。bootstrap methodの方を調べていて大変いい資料だなと思ってURLを見たら台湾の大学の数学科だった。</p>
-<p>わからない語句を深さ優先的に探索していたら何も分からなくなってきた。基礎をしっかりと抑えていないと論文も読めないな。当たり前か。</p>
+<h2 id="日課">日課</h2>
+<ul>
+<li class="task-list-item">
+<input type="checkbox" class="task-list-item-checkbox" checked disabled /> タイピングの練習
+<ul>
+<li class="task-list-item">
+<input type="checkbox" class="task-list-item-checkbox" checked disabled /> 寿司打
+</li>
+<li class="task-list-item">
+<input type="checkbox" class="task-list-item-checkbox" checked disabled /> e-typing
+</li>
+</ul>
+</li>
+<li class="task-list-item">
+<input type="checkbox" class="task-list-item-checkbox" disabled /> 筋肉を使う
+<ul>
+<li class="task-list-item">
+<input type="checkbox" class="task-list-item-checkbox" disabled /> 腹筋
+</li>
+<li class="task-list-item">
+<input type="checkbox" class="task-list-item-checkbox" disabled /> スクワット
+</li>
+<li class="task-list-item">
+<input type="checkbox" class="task-list-item-checkbox" disabled /> 体幹を使う
+</li>
+</ul>
+</li>
+<li class="task-list-item">
+<input type="checkbox" class="task-list-item-checkbox" disabled /> 読書
+<ul>
+<li class="task-list-item">
+<input type="checkbox" class="task-list-item-checkbox" disabled /> CLRS
+</li>
+<li class="task-list-item">
+<input type="checkbox" class="task-list-item-checkbox" disabled /> その他
+</li>
+</ul>
+</li>
+</ul>
 <section class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>長期的な目標はあっても、その目標に近づくための短期的な目標が立たない、立て方がわからない、という状況。<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>まとも as in the UI/UX doesn’t feel like some torture device and actually has some semblance of functioning. There’s Hanlon’s razor, and then there’s a kind of incompetence where you’re trying to shoot yourself in the foot but miss and hit some vital organs instead. It’s been five minutes now, and I’m still looking at the <a href="https://en.wikipedia.org/wiki/Throbber">throbber</a>, trying to log in to お名前ドットコム. What a joke. Five minutes was what it took to start using Google Domains, buy a domain name, and set an A record on it.<a href="#fnref1" class="footnote-back">↩</a></p></li>
 </ol>
 </section>
 <script src="//twemoji.maxcdn.com/2/twemoji.min.js?2.5"></script>
