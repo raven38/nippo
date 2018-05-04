@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>日報 2018-05-03</title>
+  <title>日報 2018-05-04</title>
   <style type="text/css">
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -18,51 +18,116 @@
 </head>
 <body>
 <header>
-<h1 class="title">日報 2018-05-03</h1>
+<h1 class="title">日報 2018-05-04</h1>
 </header>
 <table>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">12:00~</td>
-<td style="text-align: center;">起床</td>
+<td style="text-align: left;">8:00~</td>
+<td style="text-align: center;">起床+無+朝食</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">9:00~</td>
+<td style="text-align: center;">Rust</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">9:30~</td>
+<td style="text-align: center;">タイピング</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10:00~</td>
+<td style="text-align: center;">読書</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">11:00~</td>
+<td style="text-align: center;">昼食+MOOC</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">12:30~</td>
-<td style="text-align: center;">昼食</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">13:00~</td>
 <td style="text-align: center;">無</td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;">14:00~</td>
+<td style="text-align: center;">皿洗い+部屋の片付け</td>
+</tr>
 <tr class="even">
-<td style="text-align: left;">22:30~</td>
-<td style="text-align: center;">タイピングの練習</td>
+<td style="text-align: left;">16:00~</td>
+<td style="text-align: center;">読書+夕食</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">23:00~</td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">18:00~</td>
+<td style="text-align: center;">事務</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">18:30~</td>
+<td style="text-align: center;">調べもの</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">19:30~</td>
+<td style="text-align: center;">CDリッピング+MOOC</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">20:00~</td>
+<td style="text-align: center;">マシンのメンテナンス+MOOC</td>
 </tr>
 </tbody>
 </table>
-<p>頭が痛い。</p>
-<p>「ん」を打つときにnnではなくnで済む時はそのように打つように心がけてみたら、打つ速度が1キー/秒ぐらい落ちた。1キー/秒だったらnnと常に打っていた方がはやいかもしれない。入力の効率性と言えばローマ字入力よりかな入力の方がはるかに効率がいいだろうし、試してみるか？</p>
-<pre><code>あいうえお
-かきくけこ
-さしすせそ
-たちつてと
-なにぬねの
-はひふへほ
-まみむめも
-やゆよ
-わをん</code></pre>
-<p>打ち込むのに数分掛かった気がする。</p>
+<p>先週か先々週に文法解析器みたいなものをPrologで組んだけど、それようの文法が用意されてることを知った。</p>
+<p>日報によると、大体一ヶ月毎に散髪をしているようだ。前回散髪したのは4月4日らしい。今日で丁度一ヶ月だ。そろそろ行くか。</p>
+<p>ポチってしまった。</p>
+<p>香港から自宅のLANにあるマシンで作業したいなと思って調べている。具体的にはNATされたネットワークにアクセスして作業するいい方法が欲しい。国境を越えることを考えると、moshかWireGuardみたいなUDPベース+ローミング可能なものが望ましい。</p>
+<p><a href="http://blog.mattgauger.com/2012/04/21/mosh-ssh-tunnels-tmux/">Mosh, SSH Tunnels, and Tmux · Matt Gauger</a></p>
+<p>これシンプルでいいんだけど、自宅とVPSの間の接続が落ちたときに対応をどうするべきか。</p>
+<p><a href="https://github.com/mobile-shell/mosh/issues/563">feature request - reverse shell · Issue #563 · mobile-shell/mosh</a></p>
+<p><a href="https://linux.die.net/man/1/autossh">autossh(1): monitor/restart ssh sessions - Linux man page</a></p>
+<p><a href="https://staaldraad.github.io/2017/04/17/nat-to-nat-with-wireguard/">NAT-to-NAT VPN with WireGuard · Staaldraad</a></p>
+<p>これがよさそう。</p>
+<p>日報とかブログ記事を書くときに手っ取り早く<code>document.title</code>をコピーするために <code>javascript:alert(document.title);</code>っていうブックマークレットを使っているんだけど、 GitHubとかだとSOPのせいで<code>javascript:</code>が使えず、一々コンソールを開いて <code>document.title</code>を打ち込んでコピーしている。面倒だからGreasemonkeyみたいなのでクリップボードへの書き込みも含めて半自動科できないかと調べてみたけど、ブックマークレットの手軽さがなくて断念。</p>
+<p><a href="https://blog.hackage.haskell.org/posts/2018-04-26-downtime.html">Hackage Blog - Explaining the Recent Hackage Downtime</a></p>
+<p>パッケージレポジトリ、雑に分散させられるようにしたいよね。IPFSとか使ってできるのだろうか。</p>
+<p><a href="https://blog.bitmex.com/bitmex-market-making-desk/">BitMEX Market Making Desk – BitMEX Blog</a></p>
+<blockquote>
+<p>unless otherwise set forth in the terms of a specific BitMEX product, the trading business receives access and trading privileges only on the same terms as are available to any other user.</p>
+</blockquote>
+<p>:thinking_face:</p>
+<p><a href="http://timdettmers.com/2017/04/09/which-gpu-for-deep-learning/">Which GPU(s) to Get for Deep Learning</a></p>
+<p>さらっと論文を書いた話を流してるけど、これICMLに通してるじゃん。</p>
+<p>cmusにリッピングしたflacを取り込もうとしたら変な読み込まれ方をした。ロケールの互換性の問題と睨んでいて諸々を入れ直す。</p>
+<pre><code>these paths will be fetched (831.26 MiB download, 3533.01 MiB unpacked):</code></pre>
+<pre><code>these paths will be fetched (303.24 MiB download, 1332.37 MiB unpacked):</code></pre>
+<p>😦</p>
+<p>う〜〜〜ん、EMアルゴリズム、ゆるい納得ができた。</p>
+<p>kicadのビルドにすごい時間が掛かっている。チャンネルをnixos-18.03に落としたはずなのになぜバイナリキャッシュから落ちてこないんだろう？</p>
+<ul>
+<li>
+<a href="https://www.youtube.com/watch?v=8pGRdRhjX3o">DECO*27 - MKDR feat. Hatsune Miku / 妄想感傷代償連盟 feat. 初音ミク</a>
+</li>
+<li>
+<a href="http://www.nicovideo.jp/watch/sm33146555">B�ﾃ�bﾋ!ｴ��＃�ﾘ4・神社</a>
+</li>
+<li>
+ぬゆり - スチム
+</li>
+<li>
+<a href="https://www.youtube.com/watch?v=PPtfp99f5KQ">“トキのうた”をひたすらサンプリングして歌わせてみた / トキのうた ANOTHER (FULL ver.)</a>
+</li>
+<li>
+<a href="https://soundcloud.com/dj_sharpmarker/dj-noriken-feat-yucedj-sharpmarker-remix">DJ Noriken - スターゲイザー Feat. YUC’e(DJ Sharpmarker Remix)</a>
+</li>
+<li>
+<a href="https://soundcloud.com/psyqui/dj-noriken-feat-yuce-psyqui-remix">DJ Noriken - スターゲイザー feat. YUC’e (PSYQUI Remix)</a>
+</li>
+<li>
+<a href="https://soundcloud.com/imnezumi/staccato">Nezumi - Staccato</a>
+</li>
+</ul>
 <h2 id="日課">日課</h2>
 <ul>
 <li class="task-list-item">
-<input type="checkbox" class="task-list-item-checkbox" checked disabled /> タイピングの練習
+<input type="checkbox" class="task-list-item-checkbox" disabled /> タイピングの練習
 <ul>
 <li class="task-list-item">
-<input type="checkbox" class="task-list-item-checkbox" checked disabled /> 寿司打
+<input type="checkbox" class="task-list-item-checkbox" disabled /> 寿司打
 </li>
 <li class="task-list-item">
 <input type="checkbox" class="task-list-item-checkbox" checked disabled /> e-typing
@@ -71,7 +136,7 @@
 <input type="checkbox" class="task-list-item-checkbox" checked disabled /> typing.io
 </li>
 <li class="task-list-item">
-<input type="checkbox" class="task-list-item-checkbox" checked disabled /> かな入力
+<input type="checkbox" class="task-list-item-checkbox" disabled /> かな入力
 </li>
 </ul>
 </li>
@@ -101,8 +166,6 @@
 </ul>
 </li>
 </ul>
-<p>体重: 72.1kg<br />
-目標: 65.0kg</p>
 <script src="//twemoji.maxcdn.com/2/twemoji.min.js?2.5"></script>
 <script>document.addEventListener("DOMContentLoaded", () => twemoji.parse(document.body, { folder: "svg", ext: ".svg" }));</script>
 <a href="./index.html">一覧</a>
