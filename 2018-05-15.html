@@ -165,9 +165,26 @@ Genre                           : Unknown
 Date                            : 2017
 Duration                        : 0:03:43</code></pre>
 <p>知人の勧めで最近fishシェルを使いだして、bash et al.と微妙に違う文法になれるべき今回もfishを使ってスクリプティングしていこうと思う。</p>
+<p>スライドに一通り目を通した。ER図をテキストから生成したいよね。</p>
+<p><a href="https://qiita.com/genzouw/items/23cd0119715403e6e110">ER図を書くのに疲れたら - Qiita</a><Paste></p>
+<p>Java導入の時点でしんどそう。しかしnixpkgsには入っているようだ、最悪使うことになりそう。</p>
+<p>と思って探していたら面白そうなツール発見。</p>
+<p><a href="https://github.com/BurntSushi/erd">BurntSushi/erd: Translates a plain text description of a relational database schema to a graphical entity-relationship diagram.</a></p>
+<p>ripgrep作者のBurntSushiだし、Haskell製だし、信用しかない。<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<p><code>nix-env -iA nixpkgs.haskellPackages.erd</code>で入らない！！！困った。</p>
+<p><a href="https://github.com/NixOS/nixpkgs/blob/master/doc/languages-frameworks/haskell.section.md">nixpkgs/haskell.section.md at master · NixOS/nixpkgs</a></p>
+<p>cabal2nixを試している。</p>
+<p><a href="http://tamakino.hatenablog.com/entry/2018/05/10/080000">アリババ、ファーウェイはどのぐらい残業しているか？張り込んで調べて見た - 中華IT最新事情</a></p>
+<p>よく分からんがビルドができた。それはまるで魔法。日本語を入れても問題なくレンダーしてくれるようだ。</p>
+<p>あーだこーだ非本質的なことをしている内に眠くなってきた。</p>
+<p><a href="https://github.com/syl20bnr/spacemacs">syl20bnr/spacemacs: A community-driven Emacs distribution - The best editor is neither Emacs nor Vim, it’s Emacs <em>and</em> Vim!</a></p>
+<p>Destroy All SoftwareのEmacs回（確かあったきがする）を見て以来、Emacsに興味を持っていないと言えば嘘になる。</p>
 <ul>
 <li>
 <a href="https://soundcloud.com/akibanime/irsnkrys6cgw">ドリーム ランド by Akiba</a>
+</li>
+<li>
+<a href="https://www.youtube.com/watch?v=elC2uKfEKbg">Patchwork Staccato (English Cover)【JubyPhonic】ツギハギスタッカート - YouTube</a>
 </li>
 </ul>
 <h2 id="日課">日課</h2>
@@ -218,6 +235,12 @@ Duration                        : 0:03:43</code></pre>
 </ul>
 </li>
 </ul>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>こういう信頼度の判定の仕方、あまりよくない気もするがついやってしまう。しかし、実際Rust/Haskell/Ocaml et al.製の方が他の“mainstream”言語製のツールより偽陽性が遥かに少ない印象があるんだよな。JavaScriptは結構な頻度で品質の高さに驚くし、はやくも指標の限界を感じる。<a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</section>
 <script src="//twemoji.maxcdn.com/2/twemoji.min.js?2.5"></script>
 <script>document.addEventListener("DOMContentLoaded", () => twemoji.parse(document.body, { folder: "svg", ext: ".svg" }));</script>
 <a href="./index.html">一覧</a>
