@@ -76,7 +76,7 @@
 </tr>
 <tr class="even">
 <td style="text-align: left;">23:30~</td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">課題</td>
 </tr>
 </tbody>
 </table>
@@ -92,6 +92,79 @@
 <p>定数は大分小さいけど、タイピング速度が今の所線形に上昇している。</p>
 <p>They Liveという映画を勧められて調べたところ、Amazonでレンタル可能っぽい。攻殻機動隊 S.A.C. 2nd GIGの1話が無料レンタルとのことで、見る。ラストの“I can’t be cool”が良すぎる。</p>
 <p>CombGigとCombGig2を企画した時、攻殻機動隊へのallusionだということを誰も気づいてくれなくて、ちょっぴり悲しい気分になったことを思い出した。</p>
+<p>明日データモデリングの課題の提出日だ。そろそろ取り組まないと不味そうだから日報に記録しながら取り組んでいこうと思う。課題の概要を軽く見た感じだと、 ER図を作って、音楽のアルバムのデータを幾つかDBに落とし込む感じっぽい。</p>
+<p>音楽データはせっかくだから、普段使っているcmusからとりたい。</p>
+<p><a href="https://superuser.com/questions/1070469/where-does-cmus-keep-its-library-and-cache-files">Where does cmus keep its library and cache files? - Super User</a></p>
+<pre><code>$ tree ~/.config/cmus/
+/home/delta/.config/cmus/
+├── autosave
+├── cache
+├── command-history
+├── lib.pl
+├── playlist.pl
+└── search-history
+0 directories, 6 files&lt;Paste&gt;</code></pre>
+<pre><code>$ head ~/.config/cmus/lib.pl
+/home/delta/music/96猫 - 嘘の火花/01 - 96猫 - 嘘の火花.flac
+/home/delta/music/96猫 - 嘘の火花/02 - 96猫 - 独り言.flac
+/home/delta/music/96猫 - 嘘の火花/03 - 96猫 - ラズベリー＊モンスター.flac
+/home/delta/music/96猫 - 嘘の火花/04 - 96猫 - 嘘の火花 -Instrumental-.flac
+/home/delta/music/96猫 - 嘘の火花/05 - 96猫 - 独り言 -Instrumental-.flac
+/home/delta/music/ALLADIN - C. Experiment/01 - ALLADIN - C. Experiment.flac
+/home/delta/music/ALLADIN - C. Experiment/02 - Cathy - kiss me.flac
+/home/delta/music/ALLADIN - C. Experiment/03 - nachi - Daydream.flac
+/home/delta/music/ALLADIN - C. Experiment/04 - nachi - bellow.flac
+/home/delta/music/ALLADIN - C. Experiment/05 - Cathy - by your side..flac</code></pre>
+<p>cmusが持ってるライブラリに入ってるファイルの場所一覧っぽい。 <code>while read f; do ~ done</code>ループとメタデータ抽出ツールで比較的簡単にデータをCSVかなにかに整形して取り込めそう。</p>
+<pre><code>$ file ~/.config/cmus/cache
+/home/delta/.config/cmus/cache: data</code></pre>
+<p>こっちはバイナリデータっぽい。流石に一々ファイルを読みに行っていないってことか。</p>
+<pre><code>$ xxd ~/.config/cmus/cache | head
+00000000: 4354 430c 0000 0001 f500 0000 0000 0000  CTC.............
+00000010: 57f2 9f5a 0000 0000 df00 0000 f9aa 1000  W..Z............
+00000020: ffff ffff ffff ffff ffff ffff ffff ffff  ................
+00000030: ffff ffff ffff ffff ffff ffff ffff ffff  ................
+00000040: ffff ffff ffff ffff ffff ffff ffff ffff  ................
+00000050: ffff ffff ffff ffff 2f68 6f6d 652f 6465  ......../home/de
+00000060: 6c74 612f 6d75 7369 632f 3936 e78c ab20  lta/music/96...
+00000070: 2d20 e598 98e3 81ae e781 abe8 8ab1 2f30  - ............/0
+00000080: 3120 2d20 3936 e78c ab20 2d20 e598 98e3  1 - 96... - ....
+00000090: 81ae e781 abe8 8ab1 2e66 6c61 6300 666c  .........flac.fl</code></pre>
+<p>lib.plでの処理が難航したらcmusのソースコードを元にデコーダを組んでみるのも勉強になりそうだな。</p>
+<p><a href="https://askubuntu.com/questions/226773/how-to-read-mp3-tags-in-shell">command line - How to read mp3 tags in shell? - Ask Ubuntu</a></p>
+<p>ffprobeなんてものがあるのか。一応調べてみたけど、exiftoolで必要そうなID3タグは表示できるようだ。</p>
+<pre><code>$ cat ~/.config/cmus/lib.pl | head -n 1 | while read -l f
+        exiftool &quot;$f&quot;
+    end
+ExifTool Version Number         : 10.80
+File Name                       : 01 - 96猫 - 嘘の火花.flac
+Directory                       : /home/delta/music/96猫 - 嘘の火花
+File Size                       : 29 MB
+File Modification Date/Time     : 2018:03:07 23:08:23+09:00
+File Access Date/Time           : 2018:05:15 23:40:13+09:00
+File Inode Change Date/Time     : 2018:03:07 23:08:25+09:00
+File Permissions                : rw-r--r--
+File Type                       : FLAC
+File Type Extension             : flac
+MIME Type                       : audio/flac
+Block Size Min                  : 4096
+Block Size Max                  : 4096
+Frame Size Min                  : 14
+Frame Size Max                  : 14595
+Sample Rate                     : 44100
+Channels                        : 2
+Bits Per Sample                 : 16
+Total Samples                   : 9863112
+MD5 Signature                   : 08b0ed172e888948dc2793e2fc8be1f6
+Vendor                          : reference libFLAC 1.3.2 20170101
+Track Number                    : 1
+Artist                          : 96猫
+Album                           : 嘘の火花
+Title                           : 嘘の火花
+Genre                           : Unknown
+Date                            : 2017
+Duration                        : 0:03:43</code></pre>
+<p>知人の勧めで最近fishシェルを使いだして、bash et al.と微妙に違う文法になれるべき今回もfishを使ってスクリプティングしていこうと思う。</p>
 <ul>
 <li>
 <a href="https://soundcloud.com/akibanime/irsnkrys6cgw">ドリーム ランド by Akiba</a>
