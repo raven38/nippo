@@ -57,7 +57,7 @@
 <p>インターン先からメールの返信がなく、心配になる。</p>
 <p><a href="https://www.slideshare.net/KCSKeioComputerSocie/ss-73117572">ハミルトニアンモンテカルロ法についての説明</a></p>
 <p>棄却法は直感的に上手くいきそうな気がするけど、なぜああなるんだ？と輪講前に議論していた。</p>
-<p><a href="http://www2.econ.osaka-u.ac.jp/~tanizaki/cv/papers/integ.pdf">期待値の評価方法に関する考察：重点的サンプリング，棄却法，Metropolis-Hastingsアルゴリズムの比較</a></p>
+<p><a href="http://www2.econ.osaka-u.ac.jp/~tanizaki/cv/papers/integ.pdf">期待値の評価方法に関する考察：重点的サンプリング，棄却法，Metropolis-Hastingsアルゴリズムの比較</a><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
 <blockquote>
 <p>棄却法の妥当性については，例えば，Boswell, Gore, Patil and Tallie (1993), Chib and Greenberg (1995), Knuth (1981), O’Hagen (1994)等を参照せよ。</p>
 </blockquote>
@@ -72,9 +72,10 @@
 <blockquote>
 <p>The general rejection method is even more powerful than this. To generate a random variable <span class="math inline">\(X\)</span> with density <span class="math inline">\(f\)</span>, let <span class="math inline">\(g\)</span> be another probability density function such that <span class="math display">\[ f(t) \le cg(t) \]</span> for all <span class="math inline">\(t\)</span>, where <span class="math inline">\(c\)</span> is a constant. Now generate <span class="math inline">\(X\)</span> according to density <span class="math inline">\(g\)</span>, and also generate an independent uniform deviate <span class="math inline">\(U\)</span>. If <span class="math inline">\(U \ge f(X)/cg(X)\)</span>, reject <span class="math inline">\(X\)</span> and start again with another <span class="math inline">\(X\)</span> and <span class="math inline">\(U\)</span>. When the condition <span class="math inline">\(U &lt; f(X)/cg(X)\)</span> finally occurs, the resulting <span class="math inline">\(X\)</span> will have density <span class="math inline">\(f\)</span> as desired. [<em>Proof</em>: <span class="math inline">\(X \le x\)</span> will occur with probability <span class="math inline">\(p(x) = \int_{-\infty}^{x} \left(g(t)dt \cdot f(t)/cg(t) \right) + qp(x)\)</span>, where the quantity <span class="math inline">\(q(x) = \int_{-\infty}^{\infty}\left(g(t)dt \cdot (1 - f(t)/cg(t)) \right) = 1 - 1/c\)</span> is the probability of rejection; hence <span class="math inline">\(p(x) = \int_{-\infty}^{x} f(t)dt\)</span>.]</p>
 </blockquote>
-<p>ん〜〜〜納得。<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>式の概形まで行けたけど棄却時の確率が元の確率と同じであることを失念していて、無駄に難しく考えていたっぽい。</p>
+<p>ん〜〜〜納得。<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>式の概形まで行けたけど棄却時の確率が元の確率と同じであることを失念していて、無駄に難しく考えていたっぽい。</p>
 <p>カルマンフィルタをちゃんと理解できていない。</p>
 <p>友人にポッドキャストの紹介をした。この前の日報にいくつかいいやつをまとめた記憶があるから是非それを読んでほしい。</p>
+<p>23時過ぎにインターン先からメールの返信が届いた。やはり日時周りのミスらしい。しかし、この時間にメールが来るの、やはり金融系という感じがある。そしてシルク・ド・ソレイユの話がなかったことになっているのも面白い。当然か。</p>
 <h2 id="日課">日課</h2>
 <ul>
 <li class="task-list-item">
@@ -126,7 +127,8 @@
 <section class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>TAoCPが実用的で感動。ゆっくり全部読む時間が欲しい。<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>経済学部でKnuth引用してるの、めちゃくちゃすごい学部生の卒論だなと思って著者の名前調べたら教授でめちゃくちゃ失礼だった。<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>TAoCPが実用的で感動。ゆっくり全部読む時間が欲しい。<a href="#fnref2" class="footnote-back">↩</a></p></li>
 </ol>
 </section>
 <script src="//twemoji.maxcdn.com/2/twemoji.min.js?2.5"></script>
