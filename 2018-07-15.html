@@ -4,13 +4,16 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>日報 2018-07-14</title>
+  <title>日報 2018-07-15</title>
   <style type="text/css">
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/contrib/auto-render.min.js"></script><script>document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body);
+  });</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css" />
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -18,48 +21,58 @@
 </head>
 <body>
 <header>
-<h1 class="title">日報 2018-07-14</h1>
+<h1 class="title">日報 2018-07-15</h1>
 </header>
 <table>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">10:00~</td>
-<td style="text-align: center;">起床+シャワー+朝食+洗濯</td>
+<td style="text-align: center;">起床+無+シャワー</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">11:00~</td>
-<td style="text-align: center;">タイピング+無+昼食</td>
+<td style="text-align: center;">朝食/昼食</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">12:30~</td>
-<td style="text-align: center;">無・洗濯物の取り込み</td>
+<td style="text-align: left;">12:00~</td>
+<td style="text-align: center;">OCaml+調べもの+日報</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">13:00~</td>
-<td style="text-align: center;">無+調べもの+睡眠+OCaml+夕食</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">23:00~</td>
+<td style="text-align: left;">17:00~</td>
 <td style="text-align: center;"></td>
 </tr>
 </tbody>
 </table>
-<p>これまで寿司打はずっと正確重視ばかりをやっていたけど、数日前から寿司打一発勝負の高級をやっている。別なモードと違って、途中でミスしてしまって、最後までたどり着けないため、自分が上達しているのかどうかがあまりわからないのが悩みどころだった。そこで、何文字ミスせずに打ててるかを記録して、平均・標準偏差を可視化することにした。</p>
+<p><a href="https://drive.google.com/file/d/1QlDRAyAN926YoBuBb9auo4WZdhCyh7fC/view">就活　企業を嫌いになった理由.pdf - Google Drive</a></p>
+<p>ふと思ったけど、中の人を知っていたり、業界の人を知っているからどういう会社かなんとなく聞いている、みたいな人でない人たちは就職をする時にどうやって会社について知るんだろう？会社の説明会だとどうしてもある程度バイアス掛かるだろうし。日本にGlassdoorみたいなのは無いのか？</p>
 <p><a href="https://docs.google.com/spreadsheets/d/1Kt_ESiEI2aBxqAcuJOZcfwW_U2a2YpdKvFo4XRsfOWk/edit#gid=0">寿司打一発勝負 - Google Sheets</a></p>
-<p>気持ちとしては安定した数字が出てほしいけど、よくよく考えてみると毎回おおよそ同じところでミスするのはありえない話だ。指数的に減っていく確率分布になるはずだし。</p>
-<p><a href="https://www.youtube.com/watch?v=HNiFiLVg20k">YOW! Lambda Jam 2018 - Yaron Minsky - Reactive Programming with Diff and Patch - YouTube</a></p>
-<p><a href="https://neilmitchell.blogspot.com/2018/07/inside-paper-build-systems-la-carte.html">Neil Mitchell’s Haskell Blog: Inside the paper: Build Systems a la Carte</a></p>
-<p><a href="https://www.microsoft.com/en-us/research/uploads/prod/2018/03/build-systems.pdf">Build Systems à la Carte</a></p>
-<p>さらっと目を通した。Acar et al.によるIncremental Self-adjusting Computationsの話とか、 Nixの話がちょろっと出てきて面白い。計算グラフが静的なんと動的なので全然違ってくるんだよな。ゆっくり時間を掛けられる時にまた読みたい。</p>
-<p><a href="https://xkcd.com/936/">xkcd: Password Strength</a></p>
-<ul>
-<li>
-<a href="https://aiobahn.bandcamp.com/track/feat-nayuta">過ぎゆく日と君へ (feat. nayuta) | Aiobahn</a>
-</li>
-<li>
-Daft Punk - Too Long / Steam Machine
-</li>
-</ul>
+<p>寿司打のパフォーマンスが落ちて悲しい。<span class="math inline">\(p\)</span>の推定、<span class="math inline">\(\hat{p} = \sqrt[n+1]{\frac{1}{2}}\)</span>より賢い方法あるな。</p>
+<p>ということでちょっとコードを書いた。</p>
+<p><a href="https://github.com/mt-caret/sushi">mt-caret/sushi: sushida helper</a></p>
+<p>確率<span class="math inline">\(p\)</span>の元で<span class="math inline">\(n\)</span>回目に終わる確率は<span class="math inline">\(p^{n-1}(1-p)\)</span>で、10個のサンプルにフィッティングをするためMLEをすることにした。</p>
+<pre><code>$ cat samples.txt # 今日の寿司打の成績
+22
+26
+201
+247
+53
+187
+681
+121
+71
+233</code></pre>
+<p>これを<code>./sushi.exe plot -in-filename samples.txt</code>で<span class="math inline">\(p\)</span>についてプロットすると次のようになる。</p>
+<figure>
+<img src="./img/sushi-full.png" alt="p = 0.0 \sim 1.0" /><figcaption><span class="math inline">\(p = 0.0 \sim 1.0\)</span></figcaption>
+</figure>
+<p>一見単調増加しているように見えるけど、<span class="math inline">\(p = 1\)</span>近くを <code>./sushi.exe plot -in-filename samples.txt -left 0.99</code>でよく見ると上に凸なことが分かる。</p>
+<figure>
+<img src="./img/sushi-partial.png" alt="p = 0.99 \sim 1.0" /><figcaption><span class="math inline">\(p = 0.99 \sim 1.0\)</span></figcaption>
+</figure>
+<p>そこで、三分探索を行ってMAP推定を行うと:</p>
+<pre><code>$ ./sushi.exe mle -in-filename samples.txt
+MLE: 0.994571</code></pre>
+<p><span class="math inline">\(p\)</span>に関する分散が欲しいとなると、ベイジアンなことやらなきゃいけないのかな。<span class="math inline">\(p\)</span>のよい事前分布ってどんなのだろうか？</p>
 <h2 id="日課">日課</h2>
 <ul>
 <li class="task-list-item">
