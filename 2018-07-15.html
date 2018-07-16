@@ -69,10 +69,19 @@
 <figure>
 <img src="./img/sushi-partial.png" alt="p = 0.99 \sim 1.0" /><figcaption><span class="math inline">\(p = 0.99 \sim 1.0\)</span></figcaption>
 </figure>
-<p>そこで、三分探索を行ってMAP推定を行うと:</p>
+<p>そこで、三分探索<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>を行ってMLE推定を行うと:</p>
 <pre><code>$ ./sushi.exe mle -in-filename samples.txt
 MLE: 0.994571</code></pre>
 <p><span class="math inline">\(p\)</span>に関する分散が欲しいとなると、ベイジアンなことやらなきゃいけないのかな。<span class="math inline">\(p\)</span>のよい事前分布ってどんなのだろうか？</p>
+<p><a href="https://www.youtube.com/watch?v=5c0BvOlR5gs">Curriculum Design as an Engineering Problem: Lessons from the Field - YouTube</a></p>
+<p><a href="https://www.youtube.com/watch?v=0pX7-AG52BU">Caveat Configurator: How to replace configs with code, and why you might not want to - YouTube</a></p>
+<p><a href="http://rgrinberg.com/posts/configurator-reborn/">Configurator Reborn</a></p>
+<p><a href="https://www.owasp.org/index.php/Password_Storage_Cheat_Sheet#Introduction">Password Storage Cheat Sheet - OWASP</a></p>
+<ul>
+<li>
+Nine Inch Nails - Getting Smaller
+</li>
+</ul>
 <h2 id="日課">日課</h2>
 <ul>
 <li class="task-list-item">
@@ -110,6 +119,12 @@ MLE: 0.994571</code></pre>
 <input type="checkbox" class="task-list-item-checkbox" disabled /> 読書
 </li>
 </ul>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="http://naoyat.hatenablog.jp/entry/2012/01/04/231801">三分探索と黄金分割探索 - naoya_t@hatenablog</a> そこまでちゃんと実装する気がなかったから黄金比探索にはしなかった。定数倍の違いだろうけど、どれぐらいの高速化になるのだろうか？<a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</section>
 <script src="//twemoji.maxcdn.com/2/twemoji.min.js?2.5"></script>
 <script>document.addEventListener("DOMContentLoaded", () => twemoji.parse(document.body, { folder: "svg", ext: ".svg" }));</script>
 <a href="./index.html">一覧</a>
